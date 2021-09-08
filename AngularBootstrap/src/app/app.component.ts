@@ -34,6 +34,8 @@ export class AppComponent {
 
   cont = 0;
 
+  isLoading = false;
+
   remove()
   {
     if (this.addCountriesList.length)
@@ -45,13 +47,18 @@ export class AppComponent {
 
   add() {
     if (this.addCountriesList.length >= 0) {
-      const country = this.addCountriesList[this.cont];
-      this.countriesList.push(country);
-      this.cont++;
-      if (this.cont >= 4)
-      {
-        this.cont = 0;
-      }
+      this.isLoading = true;
+
+      setTimeout(() => {
+          const country = this.addCountriesList[this.cont];
+          this.countriesList.push(country);
+          this.cont++;
+          if (this.cont >= 4)
+          {
+            this.cont = 0;
+          }
+          this.isLoading = false;
+        }, 2000);
     }
   }
 }
