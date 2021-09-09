@@ -1,9 +1,9 @@
 <h1 class="center">Tabla con {{title}}</h1>
 <br>
-<button type="button" (click)="add()">Agregar</button>
+<button id="btnAdd" class="btn btn-success" type="button" (click)="add()">Agregar</button>
 
 <div class="progress">
-  <div *ngIf="isLoading" class="progress-bar progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  <div id="barra" class="progress-bar progress-bar-animated start anim" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 
 <button type="button" (click)="remove()">Remover</button>

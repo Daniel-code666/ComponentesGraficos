@@ -2,3 +2,13 @@
     display: flex;
     justify-content: center;
 }
+
+.start{
+    width: 0%;
+}
+.finish{
+    width: 100%;
+}
+.anim{
+    transition: all 3s ease .5s;
+}

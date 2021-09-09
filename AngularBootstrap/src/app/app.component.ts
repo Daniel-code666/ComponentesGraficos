@@ -15,6 +15,7 @@ interface Country {
 })
 export class AppComponent {
   title = 'AngularBootstrap';
+  ariavaluenow = 0;
 
   countriesList: Array<Country> = [
     { id: 1, name: 'Russia', flag: 'f/f3/Flag_of_Russia.svg', area: 17075200, population: 146989754 },
@@ -47,18 +48,14 @@ export class AppComponent {
 
   add() {
     if (this.addCountriesList.length >= 0) {
-      this.isLoading = true;
-
-      setTimeout(() => {
-          const country = this.addCountriesList[this.cont];
-          this.countriesList.push(country);
-          this.cont++;
-          if (this.cont >= 4)
-          {
-            this.cont = 0;
-          }
-          this.isLoading = false;
-        }, 2000);
+      const country = this.addCountriesList[this.cont];
+      this.countriesList.push(country);
+      this.cont++;
+      if (this.cont >= 4)
+      {
+        this.cont = 0;
+      }
+      document.getElementById('barra').classList.toggle ('finish');
     }
   }
 }
