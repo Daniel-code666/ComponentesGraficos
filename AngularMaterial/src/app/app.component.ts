@@ -51,6 +51,8 @@ export class AppComponent implements OnInit{
 
   title = 'AngularMaterial';
 
+  showFiller = false;
+
   displayedColumns: string[] = ['name', 'weight', 'symbol', 'position'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: PeriodicElement[] = ELEMENT_DATA;
@@ -69,8 +71,6 @@ export class AppComponent implements OnInit{
   }
 
   addColumn() {
-    const randomColumn = Math.floor(Math.random() * this.displayedColumns.length);
-    this.columnsToDisplay.push(this.displayedColumns[randomColumn]);
     this.isLoading = true;
     setTimeout(() => {
       const randomColumn = Math.floor(Math.random() * this.displayedColumns.length);

@@ -1,20 +1,69 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
+<mat-toolbar>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Login</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>voicemail</mat-icon>
+      <span>Registro</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+  </mat-menu>
+  <span>Tabla y barra de carga con Angular</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<br>
+
+<div>
+  <mat-drawer-container autosize>
+  </mat-drawer-container>
+</div>
+
+<mat-drawer #drawer class="example-sidenav" mode="side">
+  <p>Auto-resizing sidenav</p>
+  <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+  <button (click)="showFiller = !showFiller" mat-raised-button>
+    Toggle extra text
+  </button>
+</mat-drawer>
+
+<br>
+
 <div class="center">
   <h1>
     Tabla en Angular Material
   </h1>
 </div>
 
-<button mat-raised-button (click)="addColumn()"> Add column </button>
-<mat-progress-bar *ngIf="isLoading" color="primary" mode="indeterminate"></mat-progress-bar>
-
-<button mat-raised-button (click)="removeColumn()"> Remove column </button>
+<div>
+  <button mat-raised-button (click)="addColumn()"> Add column </button>
+  <mat-progress-bar *ngIf="isLoading" color="primary" mode="indeterminate"></mat-progress-bar>
+  
+  <button mat-raised-button (click)="removeColumn()"> Remove column </button>
+  
+  <button mat-raised-button (click)="drawer.toggle()">Toggle sidenav</button>
+</div>
 
 <table mat-table [dataSource]="data" class="mat-elevation-z8">
   <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <th id="head" mat-header-cell *matHeaderCellDef> {{column}} </th>
     <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
   </ng-container>
 
