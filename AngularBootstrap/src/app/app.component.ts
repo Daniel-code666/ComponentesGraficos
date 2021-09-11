@@ -47,7 +47,8 @@ export class AppComponent {
   }
 
   add() {
-    if (this.addCountriesList.length >= 0) {
+    document.getElementById('barra').classList.toggle ('finish');
+    if (this.addCountriesList.length) {
       const country = this.addCountriesList[this.cont];
       this.countriesList.push(country);
       this.cont++;
@@ -55,7 +56,6 @@ export class AppComponent {
       {
         this.cont = 0;
       }
-      document.getElementById('barra').classList.toggle ('finish');
     }
   }
 }
