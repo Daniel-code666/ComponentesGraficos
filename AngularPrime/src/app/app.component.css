@@ -1,0 +1,8 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.font_class{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

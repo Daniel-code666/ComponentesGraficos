@@ -1,5 +1,31 @@
-<h1>Tabla con Angular y PrimeNG</h1>
+<div>
+    <h1 class="center font_class">Tabla con Angular y PrimeNG</h1>
+</div>
 
-<p-table>
-    
-</p-table>
+<div>
+    <p-progressBar *ngIf="isLoading" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+    <br>
+    <div class="center">
+        <button pButton pRipple type="button" class="p-button-outlined" (click)="addCol()">Agregar fila</button>
+        <button pButton pRipple type="button" class="p-button-danger" (click)="removeCol()">Remover fila</button>
+    </div>
+</div>
+<br>
+<div>
+    <p-table [value]="data" [scrollable]="true" scrollHeight="500px">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let col of cols">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr>
+                <td *ngFor="let col of cols">
+                    {{data[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
