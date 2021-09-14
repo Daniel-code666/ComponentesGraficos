@@ -6,7 +6,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item routeLink="/login">
       <mat-icon>login</mat-icon>
       <span>Login</span>
     </button>
@@ -45,6 +45,10 @@
       <h1>
         Tabla en Angular Material
       </h1>
+    </div>
+
+    <div>
+      <router-outlet></router-outlet>
     </div>
 
     <div>

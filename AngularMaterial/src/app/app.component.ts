@@ -63,10 +63,7 @@ export class AppComponent implements OnInit{
 
   @HostListener('window:scroll', [])
   onWindowScroll(){
-    const element = document.documentElement,
-    body = document.body,
-    scrollTop = 'scrollTop',
-    scrollHeight = 'scrollHeight';
+    const element = document.documentElement, body = document.body, scrollTop = 'scrollTop', scrollHeight = 'scrollHeight';
     this.progresValue = (element[scrollTop] || body[scrollTop]) / ((element[scrollHeight] || body[scrollHeight]) - element.clientHeight) * 100;
   }
 
