@@ -62,12 +62,17 @@ export class AppComponent implements OnInit{
   }
 
   @HostListener('window:scroll', [])
-  onWindowScroll(){
+  onWindowScroll(): void {
     const element = document.documentElement, body = document.body, scrollTop = 'scrollTop', scrollHeight = 'scrollHeight';
     this.progresValue = (element[scrollTop] || body[scrollTop]) / ((element[scrollHeight] || body[scrollHeight]) - element.clientHeight) * 100;
   }
 
-  addColumn() {
+  loadBar(): void {
+    this.isLoading = true;
+    setTimeout(() =>{ this.isLoading = false; }, 800);
+  }
+
+  addColumn(): void {
     this.isLoading = true;
     setTimeout(() => {
       const randomColumn = Math.floor(Math.random() * this.displayedColumns.length);
@@ -76,7 +81,7 @@ export class AppComponent implements OnInit{
       }, 2000);
   }
 
-  removeColumn() {
+  removeColumn(): void {
     if (this.columnsToDisplay.length) {
       this.columnsToDisplay.pop();
     }
