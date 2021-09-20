@@ -3,16 +3,24 @@
     justify-content: center;
 }
 
-.div-right{
-    float: right;
+table {
+    width: 50%;
 }
 
-table {
-    width: 100%;
+.table-left{
+    float: left;
+}
+
+.table-right{
+    float: right;
 }
 
 button {
     margin: 16px 8px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
 }
 
 .mat-form-field {
@@ -23,10 +31,6 @@ button {
 .mat-progress-bar{
     position:fixed;
     top:0px;
-}
-
-.example-spacer {
-    flex: 1 1 auto;
 }
 
 .example-container {
@@ -44,4 +48,8 @@ button {
 
 .example-sidenav {
     padding: 20px;
+}
+
+.loader-container{
+    position: fixed;
 }

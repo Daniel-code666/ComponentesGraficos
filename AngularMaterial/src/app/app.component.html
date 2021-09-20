@@ -2,13 +2,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
 <mat-toolbar>
+
+  <span class="material-icons-outlined">
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>reorder</mat-icon> 
+    </button>
+  </span>
+
+  <span>Angular-Material</span>
+  
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
+
   <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/login">
-      <mat-icon>login</mat-icon>
-      <span>Login</span>
+    <button mat-menu-item routerLink="/buscar">
+      <mat-icon>search</mat-icon>
+      <span>Buscar</span>
     </button>
     <button mat-menu-item routerLink="/registro">
       <mat-icon>account_circle</mat-icon>
@@ -19,20 +38,16 @@
       <span>Página principal</span>
     </button>
   </mat-menu>
-  <span>Tabla y barra de carga con Angular</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
+  
 </mat-toolbar>
 
 <div>
   <mat-drawer-container autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-      <p>Auto-resizing sidenav</p>
+      <button mat-menu-item routerLink="/login">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
       <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
       <button (click)="showFiller = !showFiller" mat-raised-button>
         Toggle extra text
@@ -43,7 +58,7 @@
 
     <div class="center">
       <h1>
-        Tabla en Angular Material
+        Página en Angular
       </h1>
     </div>
 
@@ -52,18 +67,10 @@
     </div>
     <br>
     <div>
-      http://143.244.150.210/movitapp-back/departamentos/ciudad/listarPorDepartamnto/25
-
-      http://143.244.150.210/movitapp-backp/departamentos/listar
-    </div>
-    <br>
-    <div>
       <button mat-raised-button (click)="addColumn()"> Agregar columna </button>
       <mat-progress-bar *ngIf="isLoading" color="primary" mode="indeterminate"></mat-progress-bar>
       
       <button mat-raised-button (click)="removeColumn()"> Remover columna </button>
-      
-      <button mat-raised-button (click)="drawer.toggle()"> Abrir panel </button>
     </div>
 
     <table mat-table [dataSource]="data" class="mat-elevation-z8">

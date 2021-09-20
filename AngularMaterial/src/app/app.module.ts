@@ -12,12 +12,14 @@ import { MaterialModuleModule } from './material-module/material-module.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { InterceptorService } from './loader/interceptor.service';
+import { BuscarComponent } from './pages/buscar/buscar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    BuscarComponent
   ],
   imports: [
     BrowserModule,
