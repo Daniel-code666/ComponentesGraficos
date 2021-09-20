@@ -4,19 +4,22 @@
 }
 
 table {
-    width: 50%;
+    width: 100%;
 }
 
-.table-left{
-    float: left;
+.column {
+    flex: 50%;
+    padding: 20px;
 }
 
-.table-right{
-    float: right;
+.row {
+    display: flex;
 }
 
-button {
+.move-button-right{
+    display: flex;
     margin: 16px 8px;
+    justify-content: center;
 }
 
 .example-spacer {

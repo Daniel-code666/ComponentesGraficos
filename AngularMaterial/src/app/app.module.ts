@@ -14,6 +14,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './loader/interceptor.service';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModuleModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi: true}

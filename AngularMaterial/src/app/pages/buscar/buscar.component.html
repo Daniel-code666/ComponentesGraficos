@@ -2,39 +2,47 @@
 <div *ngIf="loadService.isLoading | async" class="loader-container">
     <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </div>
-<br>
 
-<div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-left">
+<div class="move-button-right">
+    <button mat-raised-button (click)="esconderTabla()"> {{buttonName}} </button>
+</div>
 
-        <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-            <th id="head" mat-header-cell *matHeaderCellDef> {{column}} </th>
-    
-            <ng-container *ngIf="column != 'ciudades'; else optionsTemplate">
-                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+<div class="row">
+    <div class="column">
+        <h3 style="text-align: center;">Departamentos</h3>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+                <th id="head" mat-header-cell *matHeaderCellDef> {{column}} </th>
+                <ng-container *ngIf="column != 'ciudades'; else optionsTemplate">
+                    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                </ng-container>
+                
+                <ng-template #optionsTemplate>
+                    <td mat-cell *matCellDef="let element" class="action-link">
+                        <button mat-raised-button (click)="cargarCiudad(element.idDepartamento)">Ciudades</button>
+                    </td>
+                </ng-template>
             </ng-container>
-            
-            <ng-template #optionsTemplate>
-                <td mat-cell *matCellDef="let element" class="action-link">
-                    <button mat-raised-button (click)="cargarCiudad(element.idDepartamento)">Ciudades</button>
-                </td>
-            </ng-template>
-        </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+        </table>
+    </div>
+
+    <div class="column">
+        <h3 style="text-align: center;">Ciudades</h3>
+        <ng-container *ngIf="show">
+            <table mat-table [dataSource]="dataSourceCiudad" class="mat-elevation-z8">
+                <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumnsC">
+                  <th id="head" mat-header-cell *matHeaderCellDef> {{column}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                </ng-container>
     
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-    </table>
-
-    <table mat-table [dataSource]="dataSourceCiudad" class="mat-elevation-z8 table-right">
-        <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumnsC">
-          <th id="head" mat-header-cell *matHeaderCellDef> {{column}} </th>
-          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplayC"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplayC;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplayC"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplayC;"></tr>
-        
-    </table>
+    </div>
 </div>
 
 <br>
