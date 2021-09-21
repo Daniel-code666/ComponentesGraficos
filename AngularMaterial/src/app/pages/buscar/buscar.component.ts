@@ -16,7 +16,7 @@ export class BuscarComponent implements OnInit {
   displayedColumns: string[] = ['idDepartamento', 'nombre', 'ciudades'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   depList: Departamento[] = [];
-  dataSource = [];
+  dataSource = new MatTableDataSource([]);
 
   displayedColumnsC: string[] = ['idCiudad', 'nombre'];
   columnsToDisplayC: string[] = this.displayedColumnsC.slice();
@@ -26,23 +26,26 @@ export class BuscarComponent implements OnInit {
   show = false;
   buttonName = 'Mostrar tabla';
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('citiesPaginator') paginator: MatPaginator;
+  @ViewChild('categoryPaginator') categoryPaginator: MatPaginator;
 
   constructor(private departService: DepartamentoService, public loadService: LoaderService) { }
 
   ngOnInit(): void {
-    this.depList = [];
     this.departService.list().subscribe(data => {
       data.forEach(element => {
         this.depList.push({idDepartamento: element.idDepartamento, nombre: element.nombre});
         console.log(`Código: ${element.idDepartamento} - Nombre ${element.nombre}`);
       });
-      this.dataSource = this.depList;
+      this.dataSource.data = this.depList;
+      this.dataSource.paginator = this.categoryPaginator;
+      this.depList = [];
     });
   }
 
   ngAfterViewInit(): void{
     this.dataSourceCiudad.paginator = this.paginator;
+    this.dataSource.paginator = this.categoryPaginator;
   }
 
   cargarCiudad(idDepartamento): void {
