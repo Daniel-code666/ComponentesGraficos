@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface PeriodicElement {
   name: string;
@@ -33,19 +34,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-tabla',
+  templateUrl: './tabla.component.html',
+  styleUrls: ['./tabla.component.css']
 })
-
-export class AppComponent implements OnInit{
+export class TablaComponent implements OnInit {
 
   constructor() {
     this.progresValue = 0;
     this.rangeArray = new Array(100);
   }
-
-  showFiller = false;
 
   progresValue: number;
   rangeArray: number[];
@@ -85,8 +83,4 @@ export class AppComponent implements OnInit{
       this.columnsToDisplay.pop();
     }
   }
-
 }
-
-
-

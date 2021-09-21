@@ -1,4 +1,7 @@
 <h2 class="center">Login</h2>
+<div *ngIf="loadService.isLoading | async" class="loader-container">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
 
 <div class="center">
     <img src="assets/dream_os.jpg" alt="imagen chévere">

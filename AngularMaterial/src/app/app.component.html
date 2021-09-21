@@ -48,9 +48,10 @@
         <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button mat-raised-button routerLink="/tabla" *ngIf="showFiller">Tabla en Angular</button>
+      <br>
       <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
+        Ver más
       </button>
     </mat-drawer>
 
@@ -65,6 +66,7 @@
     <div>
       <router-outlet></router-outlet>
     </div>
+
     <br>
     <div>
       <button mat-raised-button (click)="addColumn()"> Agregar columna </button>
@@ -72,18 +74,17 @@
       
       <button mat-raised-button (click)="removeColumn()"> Remover columna </button>
     </div>
-
+    
     <table mat-table [dataSource]="data" class="mat-elevation-z8">
-      <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-        <th id="head" mat-header-cell *matHeaderCellDef> {{column}} </th>
-        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-      
+        <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+          <th id="head" mat-header-cell *matHeaderCellDef> {{column}} </th>
+          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+        
     </table>
-
     <!-- <mat-progress-bar [value]="progresValue" *ngIf="progresValue > 0"></mat-progress-bar>
       <div>
         <p *ngFor="let i of rangeArray">

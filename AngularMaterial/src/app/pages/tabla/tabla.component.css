@@ -1,0 +1,17 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+}
+
+button {
+    margin: 16px 8px;
+}
+
+.mat-progress-bar{
+    position:fixed;
+    top:0px;
+}

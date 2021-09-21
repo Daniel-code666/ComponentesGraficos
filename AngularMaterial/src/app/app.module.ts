@@ -15,13 +15,15 @@ import { InterceptorService } from './loader/interceptor.service';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 
 import {NgxPaginationModule} from 'ngx-pagination';
+import { TablaComponent } from './pages/tabla/tabla.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistroComponent,
-    BuscarComponent
+    BuscarComponent,
+    TablaComponent
   ],
   imports: [
     BrowserModule,
