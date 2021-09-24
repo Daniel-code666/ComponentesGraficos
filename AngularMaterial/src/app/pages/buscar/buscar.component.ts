@@ -36,6 +36,7 @@ export class BuscarComponent implements OnInit {
       data.forEach(element => {
         this.depList.push({idDepartamento: element.idDepartamento, nombre: element.nombre});
         console.log(`Código: ${element.idDepartamento} - Nombre ${element.nombre}`);
+        // this.dataSource = new MatTableDataSource(data);
       });
       this.dataSource.data = this.depList;
       this.dataSource.paginator = this.categoryPaginator;
