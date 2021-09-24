@@ -43,10 +43,10 @@ export class BuscarComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit(): void{
-    this.dataSourceCiudad.paginator = this.paginator;
-    this.dataSource.paginator = this.categoryPaginator;
-  }
+  // ngAfterViewInit(): void{
+  //   this.dataSourceCiudad.paginator = this.paginator;
+  //   this.dataSource.paginator = this.categoryPaginator;
+  // }
 
   cargarCiudad(idDepartamento): void {
     this.departService.listCiudades(idDepartamento).subscribe(data => {

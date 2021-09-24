@@ -7,6 +7,10 @@
     float: right;
 }
 
+.alinear{
+    text-align: center;
+}
+
 table {
     width: 100%;
 }
@@ -30,8 +34,8 @@ button {
 }
 
 .example-container {
-    width: 500px;
-    height: 300px;
+    width: auto;
+    height: 1000px;
     border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
