@@ -48,6 +48,12 @@
         <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
+
+      <button mat-menu-item routerLink="/departamento">
+        <mat-icon>public</mat-icon>
+        <span>Departamentos</span>
+      </button>
+
       <button mat-raised-button routerLink="/tabla" *ngIf="showFiller">Tabla en Angular</button>
       <br>
       <button (click)="showFiller = !showFiller" mat-raised-button>

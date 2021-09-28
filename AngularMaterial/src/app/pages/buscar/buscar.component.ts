@@ -67,7 +67,7 @@ export class BuscarComponent implements OnInit {
   esconderTabla(): void{
     this.show = !this.show;
 
-    if(this.show)
+    if (this.show)
     {
       this.buttonName = 'Ocultar tabla';
     }else{

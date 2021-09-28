@@ -15,7 +15,10 @@ import { InterceptorService } from './loader/interceptor.service';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 
 import {NgxPaginationModule} from 'ngx-pagination';
+
 import { TablaComponent } from './pages/tabla/tabla.component';
+import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
+import { DepartamentoComponent } from './pages/departamento/departamento.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { TablaComponent } from './pages/tabla/tabla.component';
     LoginComponent,
     RegistroComponent,
     BuscarComponent,
-    TablaComponent
+    TablaComponent,
+    DepartamentoComponent,
+    CiudadComponent
   ],
   imports: [
     BrowserModule,
