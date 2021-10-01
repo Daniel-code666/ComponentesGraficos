@@ -1,0 +1,58 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+}
+
+.column {
+    flex: 50%;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+}
+
+.move-button-right{
+    display: flex;
+    margin: 16px 8px;
+    justify-content: center;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-progress-bar{
+    position:fixed;
+    top:0px;
+}
+
+.example-container {
+    width: 500px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    padding: 20px;
+}
+
+.loader-container{
+    position: fixed;
+}

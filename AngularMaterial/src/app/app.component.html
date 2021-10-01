@@ -54,6 +54,11 @@
         <span>Departamentos</span>
       </button>
 
+      <button mat-menu-item routerLink="/vehiculo">
+        <mat-icon>garage</mat-icon>
+        <span>Vehículos</span>
+      </button>
+
       <button mat-raised-button routerLink="/tabla" *ngIf="showFiller">Tabla en Angular</button>
       <br>
       <button (click)="showFiller = !showFiller" mat-raised-button>

@@ -6,6 +6,7 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { TablaComponent } from './pages/tabla/tabla.component';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
 import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
+import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -14,9 +15,10 @@ const routes: Routes = [
   { path: 'tabla', component: TablaComponent },
   { path: 'departamento', component: DepartamentoComponent, children:
     [
-      { path: 'ciudad', component: CiudadComponent}
+      { path: 'ciudad/:idDep', component: CiudadComponent}
     ]
   },
+  { path: 'vehiculo', component: VehiculoComponent },
   { path: '**', redirectTo: '/'}
 ];
 

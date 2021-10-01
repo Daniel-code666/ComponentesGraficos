@@ -19,6 +19,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { TablaComponent } from './pages/tabla/tabla.component';
 import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
+import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DepartamentoComponent } from './pages/departamento/departamento.compone
     BuscarComponent,
     TablaComponent,
     DepartamentoComponent,
-    CiudadComponent
+    CiudadComponent,
+    VehiculoComponent
   ],
   imports: [
     BrowserModule,

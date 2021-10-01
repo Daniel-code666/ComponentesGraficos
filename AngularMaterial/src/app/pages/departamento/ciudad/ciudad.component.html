@@ -1,1 +1,29 @@
 <p>ciudad works!</p>
+<div *ngIf="loadService.isLoading | async" class="loader-container">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+<br>
+
+<div class="row">
+    <div class="column">
+        <h3 style="text-align: center;">Ciudades</h3>
+        <ng-container>
+            <table mat-table [dataSource]="dataSourceCiudad" class="mat-elevation-z8">
+                <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumnsC">
+                    <th id="head" mat-header-cell *matHeaderCellDef> {{column}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplayC"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplayC;"></tr>
+            </table>
+            <mat-paginator #citiesPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </ng-container>
+    </div>
+</div>
+
+<div class="center">
+    <button mat-raised-button routerLink="/departamento">
+        Volver
+    </button>
+</div>
