@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { TablaComponent } from './pages/tabla/tabla.component';
 import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
+import { RegistrarVehiculoComponent } from './pages/vehiculo/registrar-vehiculo/registrar-vehiculo.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
     TablaComponent,
     DepartamentoComponent,
     CiudadComponent,
-    VehiculoComponent
+    VehiculoComponent,
+    RegistrarVehiculoComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
     BrowserAnimationsModule,
     MaterialModuleModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi: true}

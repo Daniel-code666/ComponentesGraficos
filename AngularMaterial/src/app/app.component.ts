@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -40,7 +41,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class AppComponent implements OnInit{
 
-  constructor() {
+  constructor(public route: ActivatedRoute) {
     this.progresValue = 0;
     this.rangeArray = new Array(100);
   }

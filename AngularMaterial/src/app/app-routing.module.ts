@@ -7,6 +7,7 @@ import { TablaComponent } from './pages/tabla/tabla.component';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
 import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
+import { RegistrarVehiculoComponent } from './pages/vehiculo/registrar-vehiculo/registrar-vehiculo.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -18,7 +19,11 @@ const routes: Routes = [
       { path: 'ciudad/:idDep', component: CiudadComponent}
     ]
   },
-  { path: 'vehiculo', component: VehiculoComponent },
+  { path: 'vehiculo', component: VehiculoComponent, children:
+    [
+      { path: 'registrar-vehiculo', component: RegistrarVehiculoComponent}
+    ]
+  },
   { path: '**', redirectTo: '/'}
 ];
 

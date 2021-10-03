@@ -1,0 +1,30 @@
+<h2 class="center">Registrar vehículo</h2>
+
+<div>
+    <ng-container>
+
+    </ng-container>
+</div>
+
+<div class="center">
+    <form #vehicleForm="ngForm" (ngSubmit)="insertVehiculo(vehicleForm.value)"> 
+        <input type="text" name="placa" ngModel placeholder="Placa">
+        <br><br>
+        <input type="text" name="marca" ngModel placeholder="Marca">
+        <br><br>
+        <input type="text" name="modelo" ngModel placeholder="Modelo">
+        <br><br>
+        <input type="text" name="tipoVehiculo" ngModel placeholder="Tipo de Vehiculo">
+        <br><br>
+        <input type="text" name="capacidad" ngModel placeholder="Capacidad">
+        <br><br>
+        <div style="text-align: center;">
+            <button mat-icon-button type="submit">
+                <mat-icon>save</mat-icon>
+                <span>Registrar</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<button mat-raised-button routerLink="/vehiculo">Volver</button>
