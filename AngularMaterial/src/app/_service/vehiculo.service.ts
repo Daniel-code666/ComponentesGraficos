@@ -9,21 +9,12 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class VehiculoService {
-
-  public errorMsg: string;
-
+  
   private url = `${environment.HOST}/vehiculos`;
 
   constructor(private http: HttpClient) { }
 
-  public guardar(v: Vehiculo): Observable<Vehiculo>{
-    return this.http.post<Vehiculo>(`${this.url}/guardar`, v);
-  }
-
-  private handleError(errorResponse: HttpErrorResponse){
-    if (errorResponse.error instanceof ErrorEvent)
-    {
-      this.errorMsg = errorResponse.error.message;
-    }
+  public guardar(v: Vehiculo){
+    return this.http.post(`${this.url}/guardar`, v);
   }
 }
