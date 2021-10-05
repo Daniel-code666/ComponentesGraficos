@@ -10,6 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -23,7 +26,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatOptionModule
   ], exports: [
     MatButtonModule,
     MatFormFieldModule,
@@ -33,7 +39,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatOptionModule
   ]
 })
 export class MaterialModuleModule { }

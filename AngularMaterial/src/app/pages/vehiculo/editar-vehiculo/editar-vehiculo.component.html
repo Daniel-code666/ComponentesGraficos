@@ -1,0 +1,91 @@
+<h2 class="center">Editar vehículo</h2>
+<div *ngIf="loadService.isLoading | async" class="loader-container">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div class="center">
+    <ng-container *ngIf="error != null">
+        <h3 class="center">
+            Ha ocurrido un error, asegurese de que la placa 
+            ingresada no se encuentre registrada
+        </h3>
+    </ng-container>
+    <ng-template *ngIf="successMsg == null">
+        <h3 class="center">
+            Registro realizado exitosamente
+        </h3>
+    </ng-template>
+</div>
+
+<div class="center">
+    <form [formGroup]="form" (ngSubmit)="editarVehiculo($event)">
+        <p>
+            Id: <br/>
+            <input type="number" placeholder="Ej:1" formControlName="idVehiculo">
+        </p>
+        <div *ngIf="form.get('idVehiculo').errors && form.get('idVehiculo').touched">
+            <p *ngIf="form.get('idVehiculo').hasError('required')">
+                Es un campo requerido
+            </p>
+        </div>
+        <p>
+            Placa: <br/>
+            <input type="text" placeholder="Ej:abc-123" formControlName="placa">
+        </p>
+        <div *ngIf="form.get('placa').errors && form.get('placa').touched">
+            <p *ngIf="form.get('placa').hasError('maxlength') || form.get('placa').hasError('minlength')">
+                Placa inválida. Ej: abc-123
+            </p>
+            <p *ngIf="form.get('placa').hasError('required')">
+                Es un campo requerido
+            </p>
+        </div>
+        <p>
+            Marca: <br/>
+            <input type="text" placeholder="Ej:Ford" formControlName="marca">
+        </p>
+        <div *ngIf="form.get('marca').errors && form.get('marca').touched">
+            <p *ngIf="form.get('marca').hasError('required')">
+                Es un campo requerido
+            </p>
+        </div>
+        <p>
+            Modelo: <br/>
+            <input type="text" placeholder="Ej:2008" formControlName="modelo">
+        </p>
+        <div *ngIf="form.get('modelo').errors && form.get('modelo').touched">
+            <p *ngIf="form.get('modelo').hasError('required')">
+                Es un campo requerido
+            </p>
+        </div>
+        <p>
+            Tipo de vehículo: <br/>
+            <input type="text" placeholder="Ej:Camioneta" formControlName="tipoVehiculo">
+        </p>
+        <div *ngIf="form.get('tipoVehiculo').errors && form.get('tipoVehiculo').touched">
+            <p *ngIf="form.get('tipoVehiculo').hasError('required')">
+                Es un campo requerido
+            </p>
+        </div>
+        <p>
+            Capacidad: <br/>
+            <input type="text" placeholder="Ej:150Kg" formControlName="capacidad">
+        </p>
+        <div *ngIf="form.get('capacidad').errors && form.get('capacidad').touched">
+            <p *ngIf="form.get('capacidad').hasError('required')">
+                Es un campo requerido
+            </p>
+        </div>
+
+        <!-- [disabled]="form.invalid" -->
+
+        <div style="text-align: center;">
+            <button mat-icon-button type="submit">
+                <mat-icon>save</mat-icon>
+                <span>Registrar</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<button mat-raised-button routerLink="/vehiculo">Volver</button>

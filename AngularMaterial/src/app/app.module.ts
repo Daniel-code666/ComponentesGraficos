@@ -22,6 +22,7 @@ import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { RegistrarVehiculoComponent } from './pages/vehiculo/registrar-vehiculo/registrar-vehiculo.component';
+import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar-vehiculo.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { RegistrarVehiculoComponent } from './pages/vehiculo/registrar-vehiculo/
     DepartamentoComponent,
     CiudadComponent,
     VehiculoComponent,
-    RegistrarVehiculoComponent
+    RegistrarVehiculoComponent,
+    EditarVehiculoComponent
   ],
   imports: [
     BrowserModule,

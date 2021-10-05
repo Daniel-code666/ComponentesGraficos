@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Vehiculo } from 'src/app/_model/vehiculo';
 import { VehiculoService } from 'src/app/_service/vehiculo.service';
+import { Error } from 'src/app/_model/error_model';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { FormGroup, FormBuilder, FormControl, Validator, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-registrar-vehiculo',
-  templateUrl: './registrar-vehiculo.component.html',
-  styleUrls: ['./registrar-vehiculo.component.css']
+  selector: 'app-editar-vehiculo',
+  templateUrl: './editar-vehiculo.component.html',
+  styleUrls: ['./editar-vehiculo.component.css']
 })
-export class RegistrarVehiculoComponent implements OnInit {
+export class EditarVehiculoComponent implements OnInit {
 
   public error: string;
 
@@ -24,18 +24,18 @@ export class RegistrarVehiculoComponent implements OnInit {
 
   constructor(private VehService: VehiculoService, public loadService: LoaderService,
     private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
-    this.buildForm();
-  }
+      this.buildForm();
+    }
 
   ngOnInit(): void {
   }
 
-  insertVehiculo(event: Event): void{
-
+  editarVehiculo(event: Event): void{
     event.preventDefault();
 
     const v: Vehiculo = new Vehiculo();
 
+    v.idVehiculo = this.form.value.idVehiculo;
     v.placa = this.form.value.placa;
     v.marca = this.form.value.marca;
     v.modelo = this.form.value.modelo;
@@ -44,7 +44,7 @@ export class RegistrarVehiculoComponent implements OnInit {
 
     if (this.form.valid)
     {
-      this.VehService.guardar(v).subscribe(success =>{
+      this.VehService.editarVeh(v).subscribe(success =>{
         console.log(success);
         this.successMsg = success;
         this.form.reset();
@@ -59,9 +59,10 @@ export class RegistrarVehiculoComponent implements OnInit {
     }
   }
 
-  private buildForm(){
+  private buildForm(): void{
     this.form = this.formBuilder.group(
       {
+        idVehiculo: ['', [Validators.required]],
         placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
         marca: ['', [Validators.required]],
         modelo: ['', [Validators.required]],

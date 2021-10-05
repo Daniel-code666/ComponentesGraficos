@@ -4,14 +4,27 @@
     </div>
     <div class="column" [hidden]="route.children.length !== 0">
         <h2 class="center">Ver lista de vehículos</h2>
-        <div style="text-align: right;">
-            <button mat-icon-button routerLink="/vehiculo/registrar-vehiculo"> 
-                <mat-icon>emoji_transportation</mat-icon>
-                <span>Registrar vehiculo</span>
-            </button>
+        <div class="row">
+            <div class="column">
+                <div style="text-align: left;">
+                    <button mat-icon-button routerLink="/vehiculo/editar-vehiculo"> 
+                        <mat-icon>car_rental</mat-icon>
+                        <span>Editar vehiculo</span>
+                    </button>
+                </div>
+            </div>
+            <div class="column">
+                <div style="text-align: left;">
+                    <button mat-icon-button routerLink="/vehiculo/registrar-vehiculo"> 
+                        <mat-icon>emoji_transportation</mat-icon>
+                        <span>Registrar vehiculo</span>
+                    </button>
+                </div>
+            </div>
         </div>
+        
         <div class="center">
-            Tabla
+            
         </div>
     </div>
     <div class="column">
