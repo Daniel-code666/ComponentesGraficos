@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'vehiculo', component: VehiculoComponent, children:
     [
       { path: 'registrar-vehiculo', component: RegistrarVehiculoComponent},
-      { path: 'editar-vehiculo', component: EditarVehiculoComponent}
+      { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent}
     ]
   },
   { path: '**', redirectTo: '/'}

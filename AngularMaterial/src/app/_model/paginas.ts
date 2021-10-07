@@ -1,7 +1,7 @@
 export class Paginas{
-    content: any[];
-    pageable: any[];
-    totalPages: number;
-    totalElements: number;
-    last: boolean;
+    pageNumber: number;
+    pageSize: number;
+    offset: number;
+    upaged: boolean;
+    paged: boolean;
 }

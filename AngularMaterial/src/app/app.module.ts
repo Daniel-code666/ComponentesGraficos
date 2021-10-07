@@ -35,7 +35,7 @@ import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar
     CiudadComponent,
     VehiculoComponent,
     RegistrarVehiculoComponent,
-    EditarVehiculoComponent
+    EditarVehiculoComponent,
   ],
   imports: [
     BrowserModule,
