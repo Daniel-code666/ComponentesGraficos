@@ -13,6 +13,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [],
@@ -29,7 +31,9 @@ import { MatOptionModule } from '@angular/material/core';
     MatPaginatorModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatSortModule,
+    MatInputModule
   ], exports: [
     MatButtonModule,
     MatFormFieldModule,
@@ -42,7 +46,9 @@ import { MatOptionModule } from '@angular/material/core';
     MatPaginatorModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatSortModule,
+    MatInputModule
   ]
 })
 export class MaterialModuleModule { }

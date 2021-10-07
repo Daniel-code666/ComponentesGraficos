@@ -20,35 +20,40 @@
 </div>
 
 <div [hidden]="route.children.length !== 0">
-    
-    <table mat-table class="mat-elevation-z8" [dataSource]="dataSource.content" [hidden]="route.children.length !== 0">
+    <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40%">
+            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+
+    <table mat-table class="mat-elevation-z8" [dataSource]="vehicleList" matSort [hidden]="route.children.length !== 0">
         <ng-container matColumnDef="idVehiculo">
-            <th id="idVehiculo" mat-header-cell *matHeaderCellDef>Id</th>
+            <th id="idVehiculo" mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
             <td mat-cell *matCellDef="let element">{{element.idVehiculo}}</td>
         </ng-container>
 
         <ng-container matColumnDef="placa">
-            <th id="placa" mat-header-cell *matHeaderCellDef>Placa</th>
+            <th id="placa" mat-header-cell *matHeaderCellDef mat-sort-header>Placa</th>
             <td mat-cell *matCellDef="let element">{{element.placa}}</td>
         </ng-container>
 
         <ng-container matColumnDef="modelo">
-            <th id="modelo" mat-header-cell *matHeaderCellDef>Modelo</th>
+            <th id="modelo" mat-header-cell *matHeaderCellDef mat-sort-header>Modelo</th>
             <td mat-cell *matCellDef="let element">{{element.modelo}}</td>
         </ng-container>
 
         <ng-container matColumnDef="marca">
-            <th id="marca" mat-header-cell *matHeaderCellDef>Marca</th>
+            <th id="marca" mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
             <td mat-cell *matCellDef="let element">{{element.marca}}</td>
         </ng-container>
 
         <ng-container matColumnDef="tipoVehiuclo">
-            <th id="tipoVehiuclo" mat-header-cell *matHeaderCellDef>Tipo de Vehículo</th>
+            <th id="tipoVehiuclo" mat-header-cell *matHeaderCellDef mat-sort-header>Tipo de Vehículo</th>
             <td mat-cell *matCellDef="let element">{{element.tipoVehiuclo}}</td>
         </ng-container>
 
         <ng-container matColumnDef="capacidad">
-            <th id="capacidad" mat-header-cell *matHeaderCellDef>Capacidad</th>
+            <th id="capacidad" mat-header-cell *matHeaderCellDef mat-sort-header>Capacidad</th>
             <td mat-cell *matCellDef="let element">{{element.capacidad}}</td>
         </ng-container>
 
@@ -65,9 +70,9 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [length]="dataSource.totalElements"
-                    [pageSize]="dataSource.pageable.pageSize"
                     [pageSizeOptions]="[3, 5, 10, 25]"
-                    (page)="pageEvent = $event; onPaginateChange($event)">
+                    (page)="onPaginateChange($event)"
+                    showFirstLastButtons>
     </mat-paginator>
 </div>
 
