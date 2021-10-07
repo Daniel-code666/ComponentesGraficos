@@ -6,6 +6,11 @@
 <div class="row">
     <div class="column">
         <h3 style="text-align: center;">Ciudades</h3>
+        <div fxLayout fxLayoutAlign="center center">
+            <mat-form-field fxFlex="40%">
+                <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+        </div>
         <ng-container>
             <table mat-table [dataSource]="dataSourceCiudad" class="mat-elevation-z8">
                 <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumnsC">

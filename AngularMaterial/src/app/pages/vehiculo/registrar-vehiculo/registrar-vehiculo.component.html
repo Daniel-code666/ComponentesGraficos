@@ -17,12 +17,12 @@
     </ng-template>
 </div>
 
-<div class="center">
+<div>
     <form [formGroup]="form" (ngSubmit)="insertVehiculo($event)">
-        <p>
-            Placa: <br/>
-            <input type="text" placeholder="Ej:abc-123" formControlName="placa">
-        </p>
+        <mat-form-field appearance="fill">
+            <mat-label>Placa</mat-label>
+            <input matInput type="text" placeholder="Ej:abc-123" formControlName="placa">
+        </mat-form-field>
         <div *ngIf="form.get('placa').errors && form.get('placa').touched">
             <p *ngIf="form.get('placa').hasError('maxlength') || form.get('placa').hasError('minlength')">
                 Placa inválida. Ej: abc-123
@@ -31,44 +31,56 @@
                 Es un campo requerido
             </p>
         </div>
-        <p>
-            Marca: <br/>
-            <input type="text" placeholder="Ej:Ford" formControlName="marca">
-        </p>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Marca</mat-label>
+            <input matInput type="text" placeholder="Ej:Ford" formControlName="marca">
+        </mat-form-field>
         <div *ngIf="form.get('marca').errors && form.get('marca').touched">
             <p *ngIf="form.get('marca').hasError('required')">
                 Es un campo requerido
             </p>
         </div>
-        <p>
-            Modelo: <br/>
-            <input type="text" placeholder="Ej:2008" formControlName="modelo">
-        </p>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Modelo</mat-label>
+            <input matInput type="text" placeholder="Ej:2008" formControlName="modelo">
+        </mat-form-field>
         <div *ngIf="form.get('modelo').errors && form.get('modelo').touched">
             <p *ngIf="form.get('modelo').hasError('required')">
                 Es un campo requerido
             </p>
+            <p *ngIf="form.get('modelo').hasError('min') || form.get('modelo').hasError('max')">
+                Modelos entre 1970 y 2022
+            </p>
         </div>
-        <p>
-            Tipo de vehículo: <br/>
-            <input type="text" placeholder="Ej:Camioneta" formControlName="tipoVehiculo">
-        </p>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Tipo de vehículo</mat-label>
+            <mat-select [(value)]="selectedValue" formControlName="tipoVehiculo">
+                <mat-option value="camion">Camión</mat-option>
+                <mat-option value="frios">Fríos</mat-option>
+                <mat-option value="tanque">Tanque</mat-option>
+                <mat-option value="furgon">Furgón</mat-option>
+                <mat-option value="estacas">Estacas</mat-option>
+            </mat-select>
+            
+        </mat-form-field>
         <div *ngIf="form.get('tipoVehiculo').errors && form.get('tipoVehiculo').touched">
             <p *ngIf="form.get('tipoVehiculo').hasError('required')">
                 Es un campo requerido
             </p>
         </div>
-        <p>
-            Capacidad: <br/>
-            <input type="text" placeholder="Ej:150Kg" formControlName="capacidad">
-        </p>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Capacidad</mat-label>
+            <input matInput type="text" placeholder="Ej:150Kg" formControlName="capacidad">
+        </mat-form-field>
         <div *ngIf="form.get('capacidad').errors && form.get('capacidad').touched">
             <p *ngIf="form.get('capacidad').hasError('required')">
                 Es un campo requerido
             </p>
         </div>
-
-        <!-- [disabled]="form.invalid" -->
 
         <div style="text-align: center;">
             <button mat-icon-button type="submit">

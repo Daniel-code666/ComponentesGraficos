@@ -16,11 +16,13 @@ import { MatSort, Sort } from '@angular/material/sort';
 export class VehiculoComponent implements OnInit {
 
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['idVehiculo', 'placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'accion'];
+  displayedColumns: string[] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'accion'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   dataSource: VehicleInfo = null;
   // dataSource = new MatTableDataSource([]);
   vehicleList = new MatTableDataSource<Vehiculo>([]);
+
+  showId = false;
 
   @ViewChild('vehiclePaginator') categoryPaginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

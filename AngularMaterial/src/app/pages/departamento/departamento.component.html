@@ -7,11 +7,14 @@
 <div class="row">
     <div class="column" [hidden]="route.children.length !== 0">
         <h3 style="text-align: center;">Departamentos</h3>
-        <mat-form-field>
-            <mat-label>Filter</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-        </mat-form-field>
+        
         <ng-container>
+            <div fxLayout fxLayoutAlign="center center">
+                <mat-form-field fxFlex="40%">
+                    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+            </div>
+            
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                 <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
                     <th id="head" mat-header-cell *matHeaderCellDef> {{column}} </th>
@@ -29,9 +32,6 @@
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
                 <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-                <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-                </tr>
             </table>
             <mat-paginator #categoryPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </ng-container>

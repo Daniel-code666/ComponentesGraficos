@@ -27,10 +27,6 @@
     </div>
 
     <table mat-table class="mat-elevation-z8" [dataSource]="vehicleList" matSort [hidden]="route.children.length !== 0">
-        <ng-container matColumnDef="idVehiculo">
-            <th id="idVehiculo" mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-            <td mat-cell *matCellDef="let element">{{element.idVehiculo}}</td>
-        </ng-container>
 
         <ng-container matColumnDef="placa">
             <th id="placa" mat-header-cell *matHeaderCellDef mat-sort-header>Placa</th>

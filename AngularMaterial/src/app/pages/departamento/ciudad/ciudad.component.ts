@@ -44,4 +44,7 @@ export class CiudadComponent implements OnInit {
     this.ciudadList = [];
   }
 
+  public doFilter = (value: string) => {
+    this.dataSourceCiudad.filter = value.trim().toLocaleLowerCase();
+  }
 }

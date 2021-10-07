@@ -5,6 +5,7 @@ import { LoaderService } from 'src/app/loader/loader.service';
 import { FormGroup, FormBuilder, FormControl, Validator, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-vehiculo',
@@ -17,13 +18,15 @@ export class RegistrarVehiculoComponent implements OnInit {
 
   public successMsg: any;
 
+  public selectedValue: string;
+
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   form: FormGroup;
 
   constructor(private VehService: VehiculoService, public loadService: LoaderService,
-    private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
+    private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private router: Router) {
     this.buildForm();
   }
 
@@ -39,15 +42,16 @@ export class RegistrarVehiculoComponent implements OnInit {
     v.placa = this.form.value.placa;
     v.marca = this.form.value.marca;
     v.modelo = this.form.value.modelo;
-    v.tipoVehiuclo = this.form.value.tipoVehiculo;
+    v.tipoVehiuclo = this.selectedValue;
     v.capacidad = this.form.value.capacidad;
 
     if (this.form.valid)
     {
-      this.VehService.guardar(v).subscribe(success =>{
+      this.VehService.guardar(v).subscribe(success => {
         console.log(success);
         this.successMsg = success;
         this.form.reset();
+        this.router.navigate(['/vehiculo']);
       }, err => {
         console.log(err);
         console.log(this.form);
@@ -64,7 +68,7 @@ export class RegistrarVehiculoComponent implements OnInit {
       {
         placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
         marca: ['', [Validators.required]],
-        modelo: ['', [Validators.required]],
+        modelo: ['', [Validators.required, Validators.min(1970), Validators.max(2022)]],
         tipoVehiculo: ['', [Validators.required]],
         capacidad: ['', [Validators.required]],
       });
