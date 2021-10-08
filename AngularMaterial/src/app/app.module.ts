@@ -23,6 +23,11 @@ import { DepartamentoComponent } from './pages/departamento/departamento.compone
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { RegistrarVehiculoComponent } from './pages/vehiculo/registrar-vehiculo/registrar-vehiculo.component';
 import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar-vehiculo.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+
+import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
+import { IndexComponent } from './pages/index/index.component';
+import { Error500Component } from './pages/error500/error500.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,9 @@ import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar
     VehiculoComponent,
     RegistrarVehiculoComponent,
     EditarVehiculoComponent,
+    NotFoundComponent,
+    IndexComponent,
+    Error500Component,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +56,8 @@ import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar
     ReactiveFormsModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

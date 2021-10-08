@@ -3,20 +3,6 @@
     <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </div>
 
-<div class="center">
-    <ng-container *ngIf="error != null">
-        <h3 class="center">
-            Ha ocurrido un error, asegurese de que la placa 
-            ingresada no se encuentre registrada
-        </h3>
-    </ng-container>
-    <ng-template *ngIf="successMsg == null">
-        <h3 class="center">
-            Registro realizado exitosamente
-        </h3>
-    </ng-template>
-</div>
-
 <div>
     <form [formGroup]="form" (ngSubmit)="insertVehiculo($event)">
         <mat-form-field appearance="fill">

@@ -9,8 +9,12 @@ import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { RegistrarVehiculoComponent } from './pages/vehiculo/registrar-vehiculo/registrar-vehiculo.component';
 import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar-vehiculo.component';
+import { NotFoundComponent } from 'src/app/pages/not-found/not-found.component';
+import { IndexComponent } from 'src/app/pages/index/index.component';
+import { Error500Component } from 'src/app/pages/error500/error500.component';
 
 const routes: Routes = [
+  { path: '', component: IndexComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroComponent},
   { path: 'buscar', component: BuscarComponent},
@@ -26,7 +30,9 @@ const routes: Routes = [
       { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent}
     ]
   },
-  { path: '**', redirectTo: '/'}
+  { path: 'error500', component: Error500Component},
+  { path: '**', component: NotFoundComponent}
+  // { path: '**', redirectTo: 'not-found'}
 ];
 
 @NgModule({

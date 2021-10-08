@@ -3,9 +3,9 @@ import { Vehiculo } from 'src/app/_model/vehiculo';
 import { VehiculoService } from 'src/app/_service/vehiculo.service';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { FormGroup, FormBuilder, FormControl, Validator, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
 
 @Component({
   selector: 'app-registrar-vehiculo',
@@ -26,7 +26,8 @@ export class RegistrarVehiculoComponent implements OnInit {
   form: FormGroup;
 
   constructor(private VehService: VehiculoService, public loadService: LoaderService,
-    private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private router: Router) {
+              private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private router: Router,
+              public errorInterceptor: ErrorInterceptorService) {
     this.buildForm();
   }
 
@@ -49,21 +50,19 @@ export class RegistrarVehiculoComponent implements OnInit {
     {
       this.VehService.guardar(v).subscribe(success => {
         console.log(success);
-        this.successMsg = success;
+        this.successMsg = 'Vehículo registrado';
         this.form.reset();
+        this.openSnackBarSuccess();
         this.router.navigate(['/vehiculo']);
       }, err => {
         console.log(err);
-        console.log(this.form);
-        this.error = err.error.message;
-        this.openSnackBar();
       });
     }else{
       this.form.markAllAsTouched();
     }
   }
 
-  private buildForm(){
+  private buildForm(): void{
     this.form = this.formBuilder.group(
       {
         placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
@@ -78,8 +77,8 @@ export class RegistrarVehiculoComponent implements OnInit {
     // });
   }
 
-  openSnackBar() {
-    this._snackBar.open(this.error, 'Cerrar', {
+  openSnackBarSuccess(): void {
+    this._snackBar.open(this.successMsg, 'Cerrar',{
       duration: 10000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
