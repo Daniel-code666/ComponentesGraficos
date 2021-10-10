@@ -29,14 +29,25 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
       console.log(err);
 
-      if (err.error.status === 400){
+      /* if (err.error instanceof ErrorEvent){
         let str = err.error.message;
         this.openSnackBar(str.slice(4, str.length));
+      }else{
+        this.router.navigate(['/error500']);
+      } */
+
+      const str = err.error.message;
+
+      if (err.error.status === 400){
+        this.openSnackBar(str.slice(4, str.length));
       } else if (err.error.status === 404) {
+        this.openSnackBar(str.slice(4, str.length));
         this.openSnackBar(err.error.message);
       } else if (err.error.status === 405){
+        this.openSnackBar(str.slice(4, str.length));
         this.openSnackBar(err.error.message);
       } else if (err.error.status === 415) {
+        this.openSnackBar(str.slice(4, str.length));
         this.openSnackBar(err.error.message);
       } else if (err.error.status === 500) {
         this.router.navigate(['/error500']);

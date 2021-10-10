@@ -21,7 +21,7 @@ export class RegistrarVehiculoComponent implements OnInit {
   public selectedValue: string;
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   form: FormGroup;
 

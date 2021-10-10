@@ -5,6 +5,8 @@ import { Error } from 'src/app/_model/error_model';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { FormGroup, FormBuilder, FormControl, Validator, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-vehiculo',
@@ -17,17 +19,39 @@ export class EditarVehiculoComponent implements OnInit {
 
   public successMsg: any;
 
+  public selectedValue: string;
+
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   form: FormGroup;
 
+  vehicle: Vehiculo = new Vehiculo();
+
+  veh: any;
+
   constructor(private VehService: VehiculoService, public loadService: LoaderService,
-    private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
+              private formBuilder: FormBuilder, private _snackBar: MatSnackBar,
+              public errorInterceptor: ErrorInterceptorService, private router: Router, private route: ActivatedRoute) {
       this.buildForm();
     }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      let idVehiculo = params.idVehiculo;
+      this.loadVehiculo(idVehiculo);
+    });
+  }
+
+  loadVehiculo(idVehiculo: number): void{
+    this.VehService.getVehById(idVehiculo).subscribe(data => {
+      console.log(data);
+
+      this.veh = data;
+
+      console.log(this.veh.placa);
+
+    });
   }
 
   editarVehiculo(event: Event): void{
@@ -35,24 +59,68 @@ export class EditarVehiculoComponent implements OnInit {
 
     const v: Vehiculo = new Vehiculo();
 
-    v.idVehiculo = this.form.value.idVehiculo;
-    v.placa = this.form.value.placa;
-    v.marca = this.form.value.marca;
-    v.modelo = this.form.value.modelo;
-    v.tipoVehiuclo = this.form.value.tipoVehiculo;
-    v.capacidad = this.form.value.capacidad;
+    if (this.form.value.placa === null){
+      v.idVehiculo = this.veh.idVehiculo;
+      v.placa = this.veh.placa;
+      v.marca = this.form.value.marca;
+      v.modelo = this.form.value.modelo;
+      v.tipoVehiuclo = this.form.value.tipoVehiculo;
+      v.capacidad = this.form.value.capacidad;
+    }else if (this.form.value.marca === null){
+      v.idVehiculo = this.veh.idVehiculo;
+      v.placa = this.form.value.placa;
+      v.marca = this.veh.marca;
+      v.modelo = this.form.value.modelo;
+      v.tipoVehiuclo = this.form.value.tipoVehiculo;
+      v.capacidad = this.form.value.capacidad;
+    }else if (this.form.value.modelo === null){
+      v.idVehiculo = this.veh.idVehiculo;
+      v.placa = this.form.value.placa;
+      v.marca = this.form.value.marca;
+      v.modelo = this.veh.marca;
+      v.tipoVehiuclo = this.form.value.tipoVehiculo;
+      v.capacidad = this.form.value.capacidad;
+    }else if (this.form.value.tipoVehiculo === null){
+      v.idVehiculo = this.veh.idVehiculo;
+      v.placa = this.form.value.placa;
+      v.marca = this.form.value.marca;
+      v.modelo = this.form.value.modelo;
+      v.tipoVehiuclo = this.veh.tipoVehiuclo;
+      v.capacidad = this.form.value.capacidad;
+    }else if (this.form.value.capacidad === null){
+      v.idVehiculo = this.veh.idVehiculo;
+      v.capacidad = this.veh.capacidad;
+      v.placa = this.form.value.placa;
+      v.marca = this.form.value.marca;
+      v.modelo = this.form.value.modelo;
+      v.tipoVehiuclo = this.form.value.tipoVehiculo;
+    }else if (this.form.value.placa === null || this.form.value.marca === null || this.form.value.modelo === null
+      || this.form.value.tipoVehiculo === null || this.form.value.capacidad === null){
+        v.idVehiculo = this.veh.idVehiculo;
+        v.placa = this.veh.placa;
+        v.marca = this.veh.marca;
+        v.modelo = this.veh.modelo;
+        v.tipoVehiuclo = this.veh.tipoVehiuclo;
+        v.capacidad = this.veh.capacidad;
+    }else{
+      v.idVehiculo = this.veh.idVehiculo;
+      v.placa = this.form.value.placa;
+      v.marca = this.form.value.marca;
+      v.modelo = this.form.value.modelo;
+      v.tipoVehiuclo = this.form.value.tipoVehiculo;
+      v.capacidad = this.form.value.capacidad;
+    }
 
     if (this.form.valid)
     {
       this.VehService.editarVeh(v).subscribe(success =>{
         console.log(success);
-        this.successMsg = success;
+        this.successMsg = 'Vehículo correctamente actualizado';
+        this.openSnackBarSuccess();
+        this.router.navigate(['/vehiculo']);
         this.form.reset();
       }, err => {
         console.log(err);
-        console.log(this.form);
-        this.error = err.error.message;
-        this.openSnackBar();
       });
     }else{
       this.form.markAllAsTouched();
@@ -62,12 +130,12 @@ export class EditarVehiculoComponent implements OnInit {
   private buildForm(): void{
     this.form = this.formBuilder.group(
       {
-        idVehiculo: ['', [Validators.required]],
-        placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
-        marca: ['', [Validators.required]],
-        modelo: ['', [Validators.required]],
-        tipoVehiculo: ['', [Validators.required]],
-        capacidad: ['', [Validators.required]],
+        idVehiculo: ['', []],
+        placa: ['', [Validators.minLength(7), Validators.maxLength(7)]],
+        marca: ['', []],
+        modelo: ['', [Validators.min(1970), Validators.max(2022)]],
+        tipoVehiculo: ['', []],
+        capacidad: ['', []],
       });
 
     // this.form.valueChanges.pipe(debounceTime(500)).subscribe(value => {
@@ -77,6 +145,14 @@ export class EditarVehiculoComponent implements OnInit {
 
   openSnackBar() {
     this._snackBar.open(this.error, 'Cerrar', {
+      duration: 10000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
+  openSnackBarSuccess(): void {
+    this._snackBar.open(this.successMsg, 'Cerrar',{
       duration: 10000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
