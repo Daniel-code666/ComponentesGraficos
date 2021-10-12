@@ -38,7 +38,15 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
       const str = err.error.message;
 
-      if (err.error.status === 400){
+      const statusCode = err.error.status.toString();
+
+      if (statusCode.charAt(0) === '4'){
+        this.openSnackBar(str.slice(4, str.length));
+      } else if (statusCode.charAt(0) === '5'){
+        this.router.navigate(['/error500']);
+      }
+
+      /* if (err.error.status === 400){
         this.openSnackBar(str.slice(4, str.length));
       } else if (err.error.status === 404) {
         this.openSnackBar(str.slice(4, str.length));
@@ -51,7 +59,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
         this.openSnackBar(err.error.message);
       } else if (err.error.status === 500) {
         this.router.navigate(['/error500']);
-      }
+      } */
       return EMPTY;
     }));
   }

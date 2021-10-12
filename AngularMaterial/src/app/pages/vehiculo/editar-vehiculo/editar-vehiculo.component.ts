@@ -21,6 +21,8 @@ export class EditarVehiculoComponent implements OnInit {
 
   public selectedValue: string;
 
+  public selectedValue2: string;
+
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
@@ -59,61 +61,16 @@ export class EditarVehiculoComponent implements OnInit {
 
     const v: Vehiculo = new Vehiculo();
 
-    if (this.form.value.placa === null){
-      v.idVehiculo = this.veh.idVehiculo;
-      v.placa = this.veh.placa;
-      v.marca = this.form.value.marca;
-      v.modelo = this.form.value.modelo;
-      v.tipoVehiuclo = this.form.value.tipoVehiculo;
-      v.capacidad = this.form.value.capacidad;
-    }else if (this.form.value.marca === null){
-      v.idVehiculo = this.veh.idVehiculo;
-      v.placa = this.form.value.placa;
-      v.marca = this.veh.marca;
-      v.modelo = this.form.value.modelo;
-      v.tipoVehiuclo = this.form.value.tipoVehiculo;
-      v.capacidad = this.form.value.capacidad;
-    }else if (this.form.value.modelo === null){
-      v.idVehiculo = this.veh.idVehiculo;
-      v.placa = this.form.value.placa;
-      v.marca = this.form.value.marca;
-      v.modelo = this.veh.marca;
-      v.tipoVehiuclo = this.form.value.tipoVehiculo;
-      v.capacidad = this.form.value.capacidad;
-    }else if (this.form.value.tipoVehiculo === null){
-      v.idVehiculo = this.veh.idVehiculo;
-      v.placa = this.form.value.placa;
-      v.marca = this.form.value.marca;
-      v.modelo = this.form.value.modelo;
-      v.tipoVehiuclo = this.veh.tipoVehiuclo;
-      v.capacidad = this.form.value.capacidad;
-    }else if (this.form.value.capacidad === null){
-      v.idVehiculo = this.veh.idVehiculo;
-      v.capacidad = this.veh.capacidad;
-      v.placa = this.form.value.placa;
-      v.marca = this.form.value.marca;
-      v.modelo = this.form.value.modelo;
-      v.tipoVehiuclo = this.form.value.tipoVehiculo;
-    }else if (this.form.value.placa === null || this.form.value.marca === null || this.form.value.modelo === null
-      || this.form.value.tipoVehiculo === null || this.form.value.capacidad === null){
-        v.idVehiculo = this.veh.idVehiculo;
-        v.placa = this.veh.placa;
-        v.marca = this.veh.marca;
-        v.modelo = this.veh.modelo;
-        v.tipoVehiuclo = this.veh.tipoVehiuclo;
-        v.capacidad = this.veh.capacidad;
-    }else{
-      v.idVehiculo = this.veh.idVehiculo;
-      v.placa = this.form.value.placa;
-      v.marca = this.form.value.marca;
-      v.modelo = this.form.value.modelo;
-      v.tipoVehiuclo = this.form.value.tipoVehiculo;
-      v.capacidad = this.form.value.capacidad;
-    }
+    v.idVehiculo = this.veh.idVehiculo;
+    v.placa = this.form.value.placa;
+    v.marca = this.form.value.marca;
+    v.modelo = this.form.value.modelo;
+    v.tipoVehiuclo = this.form.value.tipoVehiculo;
+    v.capacidad = this.form.value.capacidad;
 
     if (this.form.valid)
     {
-      this.VehService.editarVeh(v).subscribe(success =>{
+      this.VehService.editarVeh(v).subscribe(success => {
         console.log(success);
         this.successMsg = 'Vehículo correctamente actualizado';
         this.openSnackBarSuccess();
@@ -131,11 +88,11 @@ export class EditarVehiculoComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
         idVehiculo: ['', []],
-        placa: ['', [Validators.minLength(7), Validators.maxLength(7)]],
-        marca: ['', []],
-        modelo: ['', [Validators.min(1970), Validators.max(2022)]],
-        tipoVehiculo: ['', []],
-        capacidad: ['', []],
+        placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
+        marca: ['', [Validators.required]],
+        modelo: ['', [Validators.required, Validators.min(1970), Validators.max(2022)]],
+        tipoVehiculo: ['', [Validators.required]],
+        capacidad: ['', [Validators.required]],
       });
 
     // this.form.valueChanges.pipe(debounceTime(500)).subscribe(value => {
