@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Vehiculo } from 'src/app/_model/vehiculo';
 import { VehiculoService } from 'src/app/_service/vehiculo.service';
 import { Error } from 'src/app/_model/error_model';
-import { LoaderService } from 'src/app/loader/loader.service';
+// import { LoaderService } from 'src/app/loader/loader.service';
 import { FormGroup, FormBuilder, FormControl, Validator, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { LoaderService } from 'src/app/_service/loader.service';
 
 @Component({
   selector: 'app-editar-vehiculo',
@@ -34,11 +35,13 @@ export class EditarVehiculoComponent implements OnInit {
 
   constructor(private VehService: VehiculoService, public loadService: LoaderService,
               private formBuilder: FormBuilder, private _snackBar: MatSnackBar,
-              public errorInterceptor: ErrorInterceptorService, private router: Router, private route: ActivatedRoute) {
+              public errorInterceptor: ErrorInterceptorService, private router: Router, 
+              private route: ActivatedRoute) {
       this.buildForm();
     }
 
   ngOnInit(): void {
+    this.loadService.progressBarReactiva.next(false);
     this.route.params.subscribe((params: Params) => {
       let idVehiculo = params.idVehiculo;
       this.loadVehiculo(idVehiculo);
@@ -53,6 +56,7 @@ export class EditarVehiculoComponent implements OnInit {
 
       console.log(this.veh.placa);
 
+      this.loadService.progressBarReactiva.next(true);
     });
   }
 

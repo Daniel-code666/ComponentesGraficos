@@ -5,6 +5,7 @@ import { EMPTY, Observable } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { LoaderService } from '../_service/loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  constructor(private _snackBar: MatSnackBar, private router: Router) { }
+  constructor(private _snackBar: MatSnackBar, private router: Router, private loader: LoaderService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('Entró al interceptor');
@@ -35,7 +36,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
       }else{
         this.router.navigate(['/error500']);
       } */
-
+      this.loader.progressBarReactiva.next(true);
       const str = err.error.message;
 
       const statusCode = err.error.status.toString();

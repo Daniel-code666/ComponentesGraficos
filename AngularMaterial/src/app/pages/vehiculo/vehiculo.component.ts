@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { map, tap } from 'rxjs/operators';
 import { MatSort, Sort } from '@angular/material/sort';
+// import { LoaderService } from 'src/app/_service/loader.service';
 
 @Component({
   selector: 'app-vehiculo',
@@ -27,10 +28,11 @@ export class VehiculoComponent implements OnInit {
   @ViewChild('vehiclePaginator') categoryPaginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private VehService: VehiculoService, public route: ActivatedRoute, public loadService: LoaderService) {
+  constructor(private VehService: VehiculoService, public route: ActivatedRoute, public loader: LoaderService) {
   }
 
   ngOnInit(): void {
+    // this.loader.progressBarReactiva.next(false);
     this.loadVehicleInfo();
   }
 
@@ -42,6 +44,7 @@ export class VehiculoComponent implements OnInit {
     ).subscribe(data => {
       this.vehicleList = new MatTableDataSource(data.content);
       this.vehicleList.sort = this.sort;
+      // this.loader.progressBarReactiva.next(true);
     });
   }
 
