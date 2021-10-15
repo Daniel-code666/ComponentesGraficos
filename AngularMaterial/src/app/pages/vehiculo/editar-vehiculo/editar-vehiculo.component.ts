@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Vehiculo } from 'src/app/_model/vehiculo';
 import { VehiculoService } from 'src/app/_service/vehiculo.service';
-import { Error } from 'src/app/_model/error_model';
 // import { LoaderService } from 'src/app/loader/loader.service';
 import { FormGroup, FormBuilder, FormControl, Validator, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
