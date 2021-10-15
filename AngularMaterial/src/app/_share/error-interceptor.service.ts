@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { LoaderService } from '../_service/loader.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -72,4 +73,5 @@ export class ErrorInterceptorService implements HttpInterceptor {
       verticalPosition: this.verticalPosition,
     });
   }
+
 }

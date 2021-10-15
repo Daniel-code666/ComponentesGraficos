@@ -14,11 +14,13 @@ import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.servic
 })
 export class RegistrarVehiculoComponent implements OnInit {
 
-  public error: string;
+  // public error: string;
 
   public successMsg: any;
 
   public selectedValue: string;
+
+  public selectedValue2: string;
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -41,7 +43,7 @@ export class RegistrarVehiculoComponent implements OnInit {
     const v: Vehiculo = new Vehiculo();
 
     v.placa = this.form.value.placa;
-    v.marca = this.form.value.marca;
+    v.marca = this.selectedValue2;
     v.modelo = this.form.value.modelo;
     v.tipoVehiuclo = this.selectedValue;
     v.capacidad = this.form.value.capacidad;

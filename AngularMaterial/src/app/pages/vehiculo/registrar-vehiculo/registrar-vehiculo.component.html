@@ -20,7 +20,19 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Marca</mat-label>
-            <input matInput type="text" placeholder="Ej:Ford" formControlName="marca">
+            <!-- <input matInput type="text" placeholder="Ej:Ford" formControlName="marca"> -->
+            <mat-select [(value)]="selectedValue2" formControlName="marca">
+                <mat-option value="Toyota">Toyota</mat-option>
+                <mat-option value="Chevrolet">Chevrolet</mat-option>
+                <mat-option value="Renault">Renault</mat-option>
+                <mat-option value="Mazda">Mazda</mat-option>
+                <mat-option value="BMW">BMW</mat-option>
+                <mat-option value="Alfa_Romeo">Alfa Romeo</mat-option>
+                <mat-option value="Audi">Audi</mat-option>
+                <mat-option value="Ferrari">Ferrari</mat-option>
+                <mat-option value="Peugeot">Peugeot</mat-option>
+                <mat-option value="Porche">Porche</mat-option>
+            </mat-select>
         </mat-form-field>
         <div *ngIf="form.get('marca').errors && form.get('marca').touched">
             <p *ngIf="form.get('marca').hasError('required')">
@@ -44,14 +56,13 @@
         <mat-form-field appearance="fill">
             <mat-label>Tipo de vehículo</mat-label>
             <mat-select [(value)]="selectedValue" formControlName="tipoVehiculo">
-                <mat-option value="camion">Camión</mat-option>
-                <mat-option value="frios">Fríos</mat-option>
-                <mat-option value="tanque">Tanque</mat-option>
-                <mat-option value="furgon">Furgón</mat-option>
-                <mat-option value="estacas">Estacas</mat-option>
+                <mat-option value="Carro">Carro</mat-option>
+                <mat-option value="Camioneta">Camioneta</mat-option>
+                <mat-option value="Furgon">Furgon</mat-option>
+                <mat-option value="Campero">Campero</mat-option>
             </mat-select>
-            
         </mat-form-field>
+        
         <div *ngIf="form.get('tipoVehiculo').errors && form.get('tipoVehiculo').touched">
             <p *ngIf="form.get('tipoVehiculo').hasError('required')">
                 Es un campo requerido

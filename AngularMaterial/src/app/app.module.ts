@@ -43,7 +43,7 @@ import { Error500Component } from './pages/error500/error500.component';
     EditarVehiculoComponent,
     NotFoundComponent,
     IndexComponent,
-    Error500Component,
+    Error500Component
   ],
   imports: [
     BrowserModule,
@@ -53,7 +53,7 @@ import { Error500Component } from './pages/error500/error500.component';
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
