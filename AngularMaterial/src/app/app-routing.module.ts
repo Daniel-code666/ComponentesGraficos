@@ -12,6 +12,7 @@ import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar
 import { NotFoundComponent } from 'src/app/pages/not-found/not-found.component';
 import { IndexComponent } from 'src/app/pages/index/index.component';
 import { Error500Component } from 'src/app/pages/error500/error500.component';
+import { UnauthorizedComponent } from 'src/app/pages/unauthorized/unauthorized.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent}
     ]
   },
+  { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'error500', component: Error500Component},
   { path: '**', component: NotFoundComponent}
   // { path: '**', redirectTo: 'not-found'}

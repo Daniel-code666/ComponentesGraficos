@@ -28,6 +28,14 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
 import { IndexComponent } from './pages/index/index.component';
 import { Error500Component } from './pages/error500/error500.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
+import { environment } from 'src/environments/environment';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter(): any{
+  const tk = sessionStorage.getItem(environment.TOKEN);
+  return tk != null ? tk : ' ';
+}
 
 @NgModule({
   declarations: [
@@ -43,7 +51,8 @@ import { Error500Component } from './pages/error500/error500.component';
     EditarVehiculoComponent,
     NotFoundComponent,
     IndexComponent,
-    Error500Component
+    Error500Component,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +63,13 @@ import { Error500Component } from './pages/error500/error500.component';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['143.244.150.210'],
+        disallowedRoutes: ['http://143.244.150.210/movitapp-backend/oauth/token']
+      }
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

@@ -32,9 +32,9 @@ export class ErrorInterceptorService implements HttpInterceptor {
           throw new Error(event.body.errorMessage);
         }
       }
-    })).pipe(catchError((err) => {
+    })).pipe(catchError((error) => {
 
-      console.log(err);
+      console.log(error);
 
       /* if (err.error instanceof ErrorEvent){
         let str = err.error.message;
@@ -43,12 +43,14 @@ export class ErrorInterceptorService implements HttpInterceptor {
         this.router.navigate(['/error500']);
       } */
       this.loader.progressBarReactiva.next(true);
-      const str = err.error.message;
+      const str = error.message;
 
-      const statusCode = err.error.status.toString();
+      // const statusCode = error.error.toString();
 
-      if (statusCode.charAt(0) === '4'){
+      /* if (statusCode.charAt(0) === '4'){
         this.openSnackBar(str.slice(4, str.length));
+      } else if (err.status === 401){
+        this.router.navigate(['/unauthorized']);
       } else if (statusCode.charAt(0) === '5'){
         this.router.navigate(['/error500']);
 
@@ -69,22 +71,24 @@ export class ErrorInterceptorService implements HttpInterceptor {
         this.errorLog.postText(errores).subscribe(data => {
             console.log('done...');
           });
-      }
-
-      /* if (err.error.status === 400){
-        this.openSnackBar(str.slice(4, str.length));
-      } else if (err.error.status === 404) {
-        this.openSnackBar(str.slice(4, str.length));
-        this.openSnackBar(err.error.message);
-      } else if (err.error.status === 405){
-        this.openSnackBar(str.slice(4, str.length));
-        this.openSnackBar(err.error.message);
-      } else if (err.error.status === 415) {
-        this.openSnackBar(str.slice(4, str.length));
-        this.openSnackBar(err.error.message);
-      } else if (err.error.status === 500) {
-        this.router.navigate(['/error500']);
       } */
+
+      if (error.status === 400){
+        this.openSnackBar(str.slice(4, str.length));
+      } else if (error.status === 401){
+        this.router.navigate(['/unauthorized']);
+      }else if (error.status === 404) {
+        this.openSnackBar(str.slice(4, str.length));
+        this.openSnackBar(error.error.message);
+      } else if (error.error.status === 405){
+        this.openSnackBar(str.slice(4, str.length));
+        this.openSnackBar(error.error.message);
+      } else if (error.error.status === 415) {
+        this.openSnackBar(str.slice(4, str.length));
+        this.openSnackBar(error.error.message);
+      } else if (error.error.status === 500) {
+        this.router.navigate(['/error500']);
+      }
       return EMPTY;
     }));
   }
