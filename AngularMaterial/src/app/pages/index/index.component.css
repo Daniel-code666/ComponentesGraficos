@@ -15,6 +15,15 @@ table {
     width: 100%;
 }
 
+.column {
+    flex: 50%;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+}
+
 button {
     margin: 16px 8px;
 }
@@ -48,4 +57,17 @@ button {
 
 .example-sidenav {
     padding: 20px;
+}
+
+.example-card {
+    max-width: 400px;
+}
+
+mat-card img{
+    width: 50%;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
 }

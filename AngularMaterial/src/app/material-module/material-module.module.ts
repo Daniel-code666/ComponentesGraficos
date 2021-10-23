@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [],
@@ -33,7 +34,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     MatOptionModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ], exports: [
     MatButtonModule,
     MatFormFieldModule,
@@ -48,7 +50,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     MatOptionModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ]
 })
 export class MaterialModuleModule { }

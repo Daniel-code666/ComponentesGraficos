@@ -11,7 +11,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  public login(usuario: string, password: string){
+  public login(usuario: string, password: string): any{
     const body = `grant_type=password&username=${encodeURIComponent(usuario)}&password=${encodeURIComponent(password)}`;
     return this.http.post<any>(`${this.url}`, body, {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').set(
