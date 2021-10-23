@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 // export interface Departamentos{
 //   id: number;
 //   nombre: string;
@@ -21,9 +22,12 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
   // inyección de dependencias y librerías
   constructor(public loadService: LoaderService, private loginService: LoginService,
-              private formBuilder: FormBuilder, private router: Router) {
+              private formBuilder: FormBuilder, private router: Router, private _snackBar: MatSnackBar) {
     this.buildForm();
   }
 
@@ -47,7 +51,12 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem(environment.TOKEN, data.access_token);
 
         console.log(helper.decodeToken(data.access_token));
+      }, err => {
+        console.log(err);
+        this.openSnackBarSuccess();
       });
+    } else{
+      this.form.markAllAsTouched();
     }
 
     /* this.loginService.login('admin', '123456').subscribe(data => {
@@ -69,5 +78,14 @@ export class LoginComponent implements OnInit {
         password: ['', [Validators.required]]
       }
     );
+  }
+
+  openSnackBarSuccess(): void {
+    this._snackBar.open('Nombre de usuario o contraseña incorrecta', 'Cerrar',
+    {
+      duration: 10000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 }
