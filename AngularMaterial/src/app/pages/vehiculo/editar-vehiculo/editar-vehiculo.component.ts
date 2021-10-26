@@ -7,6 +7,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { LoaderService } from 'src/app/_service/loader.service';
+import { VehiculoComponent } from '../vehiculo.component';
 
 @Component({
   selector: 'app-editar-vehiculo',
@@ -34,8 +35,8 @@ export class EditarVehiculoComponent implements OnInit {
 
   constructor(private VehService: VehiculoService, public loadService: LoaderService,
               private formBuilder: FormBuilder, private _snackBar: MatSnackBar,
-              public errorInterceptor: ErrorInterceptorService, private router: Router, 
-              private route: ActivatedRoute) {
+              public errorInterceptor: ErrorInterceptorService, private router: Router,
+              private route: ActivatedRoute, private updtList: VehiculoComponent) {
       this.buildForm();
     }
 
@@ -77,6 +78,7 @@ export class EditarVehiculoComponent implements OnInit {
         console.log(success);
         this.successMsg = 'Vehículo correctamente actualizado';
         this.openSnackBarSuccess();
+        this.updtList.listVehicles();
         this.router.navigate(['/vehiculo']);
         this.form.reset();
       }, err => {
@@ -103,7 +105,7 @@ export class EditarVehiculoComponent implements OnInit {
     // });
   }
 
-  openSnackBar() {
+  openSnackBar(): void {
     this._snackBar.open(this.error, 'Cerrar', {
       duration: 10000,
       horizontalPosition: this.horizontalPosition,

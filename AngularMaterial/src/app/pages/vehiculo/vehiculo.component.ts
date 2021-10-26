@@ -23,6 +23,9 @@ export class VehiculoComponent implements OnInit {
   // dataSource = new MatTableDataSource([]);
   vehicleList = new MatTableDataSource<Vehiculo>([]);
 
+  public page = 0;
+  public size = 3;
+
   showId = false;
 
   @ViewChild('vehiclePaginator') categoryPaginator: MatPaginator;
@@ -49,10 +52,14 @@ export class VehiculoComponent implements OnInit {
   }
 
   public onPaginateChange(event: PageEvent): void{
-    let page = event.pageIndex;
-    let size = event.pageSize;
+    this.page = event.pageIndex;
+    this.size = event.pageSize;
 
-    this.VehService.getVehPag(page, size).pipe(
+    this.listVehicles();
+  }
+
+  public listVehicles(): void{
+    this.VehService.getVehPag(this.page, this.size).pipe(
       map((vehInfo: VehicleInfo) => this.dataSource = vehInfo)
     ).subscribe(data => {
       this.vehicleList = new MatTableDataSource(data.content);

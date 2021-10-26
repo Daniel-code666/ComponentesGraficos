@@ -28,10 +28,12 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/buscar">
-      <mat-icon>search</mat-icon>
-      <span>Buscar</span>
-    </button>
+    <ng-container *ngIf="this.isLogged">
+      <button mat-menu-item routerLink="/buscar">
+        <mat-icon>search</mat-icon>
+        <span>Buscar</span>
+      </button>
+    </ng-container>
     <ng-container *ngIf="!this.isLogged">
       <button mat-menu-item routerLink="/registro">
         <mat-icon>account_circle</mat-icon>

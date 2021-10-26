@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, FormControl, Validator, Validators } from '@ang
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
+import { VehiculoComponent } from '../vehiculo.component';
 
 @Component({
   selector: 'app-registrar-vehiculo',
@@ -29,7 +30,7 @@ export class RegistrarVehiculoComponent implements OnInit {
 
   constructor(private VehService: VehiculoService, public loadService: LoaderService,
               private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private router: Router,
-              public errorInterceptor: ErrorInterceptorService) {
+              public errorInterceptor: ErrorInterceptorService, private updtList: VehiculoComponent) {
     this.buildForm();
   }
 
@@ -55,6 +56,7 @@ export class RegistrarVehiculoComponent implements OnInit {
         this.successMsg = 'Vehículo registrado';
         this.form.reset();
         this.openSnackBarSuccess();
+        this.updtList.listVehicles();
         this.router.navigate(['/vehiculo']);
       }, err => {
         console.log(err);

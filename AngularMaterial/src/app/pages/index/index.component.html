@@ -8,33 +8,75 @@
 
     <div class="row">
         <div class="column">
-            
+            <ng-container *ngIf="this.isLogged">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                        <mat-card-title>Ver vehículos</mat-card-title>
+                        <mat-card-subtitle>Ver la lista de vehículos registrados</mat-card-subtitle>
+                    </mat-card-header>
+                    <div class="center frame">
+                        <img style="margin-top: 40px;" class="img" src="assets/pickup.png" alt="pickup img">
+                    </div>
+                    <mat-card-content>
+                        <p>
+                        En esta sección podrá visualizar la lista de vehículos registrados hasta el momento
+                        en la plataforma, también podrá editar la información o agregar un nuevo vehículo.
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions class="center">
+                        <button mat-raised-button routerLink="/vehiculo">Acceder</button>
+                    </mat-card-actions>
+                </mat-card>
+            </ng-container>
         </div>
         <div class="column">
-            <mat-card class="example-card">
-                <mat-card-header>
-                    <!-- <div mat-card-avatar class="example-header-image"></div> -->
-                    <mat-card-title>Login</mat-card-title>
-                    <mat-card-subtitle>Para acceder a todas las funciones</mat-card-subtitle>
-                </mat-card-header>
-                <div class="center">
-                    <img mat-card-image src="assets/pngelogin_skyblue.png" alt="Login IMG">
-                </div>
-                <mat-card-content>
-                    <p>
-                    Inicie sesión para acceder a todas las funcionalidades de la aplicación, con ello podrá:
-                    registrar su vehículo, editarlo o ver los demás vehículos registrados. También podrá ver 
-                    la lista de los departamentos en donde operamos junto con todas las ciudades en donde
-                    nuestros servicios hacen presencia.
-                    </p>
-                </mat-card-content>
-                <mat-card-actions class="center">
-                    <button mat-raised-button routerLink="/login">Acceder</button>
-                </mat-card-actions>
-            </mat-card>
+            <ng-container *ngIf="!this.isLogged">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                        <mat-card-title>Login</mat-card-title>
+                        <mat-card-subtitle>Para acceder a todas las funciones</mat-card-subtitle>
+                    </mat-card-header>
+                    <div class="center">
+                        <img mat-card-image src="assets/pngelogin_skyblue.png" alt="Login IMG">
+                    </div>
+                    <mat-card-content>
+                        <p>
+                        Inicie sesión para acceder a todas las funcionalidades de la aplicación, con ello podrá:
+                        registrar su vehículo, editarlo o ver los demás vehículos registrados. También podrá ver 
+                        la lista de los departamentos en donde operamos junto con todas las ciudades en donde
+                        nuestros servicios hacen presencia.
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions class="center">
+                        <button mat-raised-button routerLink="/login">Acceder</button>
+                    </mat-card-actions>
+                </mat-card>
+            </ng-container>
         </div>
         <div class="column">
-
+            <ng-container *ngIf="this.isLogged">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                        <mat-card-title>Ver departamentos</mat-card-title>
+                        <mat-card-subtitle>Ver la lista de departamentos</mat-card-subtitle>
+                    </mat-card-header>
+                    <div class="center">
+                        <img mat-card-image src="assets/colombia.png" alt="Colombia IMG">
+                    </div>
+                    <mat-card-content>
+                        <p>
+                        En esta sección podrá visualizar la lista de departamentos donde hay presencia de nuestros
+                        servicios.
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions class="center">
+                        <button mat-raised-button routerLink="/departamento">Acceder</button>
+                    </mat-card-actions>
+                </mat-card>
+            </ng-container>
         </div>
     </div>
 </div>

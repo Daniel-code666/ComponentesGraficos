@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
 
   public isLogged: boolean;
 
-  constructor(public route: ActivatedRoute, private loader: LoaderService, 
+  constructor(public route: ActivatedRoute, private loader: LoaderService,
               private login: LoginService, private router: Router) {
     this.progresValue = 0;
     this.rangeArray = new Array(100);
