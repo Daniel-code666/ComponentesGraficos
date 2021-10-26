@@ -42,15 +42,17 @@ export class LoginComponent implements OnInit {
     event.preventDefault();
 
     if (this.form.valid){
-      this.loginService.login(this.form.value.userName, this.form.value.userPass).subscribe(data => {
+      this.loginService.login(this.form.value.username, this.form.value.password).subscribe(data => {
 
-        const helper = new JwtHelperService();
+        // const helper = new JwtHelperService();
 
         console.log(data);
 
         sessionStorage.setItem(environment.TOKEN, data.access_token);
 
-        console.log(helper.decodeToken(data.access_token));
+        // console.log(helper.decodeToken(data.access_token));
+
+        this.router.navigate(['/']);
       }, err => {
         console.log(err);
         this.openSnackBarSuccess();

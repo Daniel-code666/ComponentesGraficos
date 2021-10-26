@@ -20,7 +20,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
   resultJson: ResultJson;
   ResultJsonString: any;
 
-  constructor(private _snackBar: MatSnackBar, private router: Router, private loader: LoaderService, 
+  constructor(private _snackBar: MatSnackBar, private router: Router, private loader: LoaderService,
               private errorLog: ErrorLogService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -43,7 +43,8 @@ export class ErrorInterceptorService implements HttpInterceptor {
         this.router.navigate(['/error500']);
       } */
       this.loader.progressBarReactiva.next(true);
-      const str = error.message;
+      const str = error.error.message;
+      const str0 = error.error.error_description;
 
       // const statusCode = error.error.toString();
 
@@ -76,7 +77,13 @@ export class ErrorInterceptorService implements HttpInterceptor {
       if (error.status === 400){
         this.openSnackBar(str.slice(4, str.length));
       } else if (error.status === 401){
-        this.router.navigate(['/unauthorized']);
+        if (str === 'No estas autorizado para acceder a este recurso')
+        {
+          this.openSnackBar(str);
+          this.router.navigate(['/unauthorized']);
+        } else {
+          this.openSnackBar(str0.slice(4, str0.length));
+        }
       }else if (error.status === 404) {
         this.openSnackBar(str.slice(4, str.length));
         this.openSnackBar(error.error.message);

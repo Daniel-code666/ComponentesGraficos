@@ -34,7 +34,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 export function tokenGetter(): any{
   const tk = sessionStorage.getItem(environment.TOKEN);
-  return tk != null ? tk : ' ';
+  return tk != null ? tk : '';
 }
 
 @NgModule({
@@ -65,9 +65,9 @@ export function tokenGetter(): any{
     ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ['143.244.150.210'],
-        disallowedRoutes: ['http://143.244.150.210/movitapp-backend/oauth/token']
+        tokenGetter,
+        allowedDomains: ['159.223.107.103:8080'],
+        disallowedRoutes: ['http://159.223.107.103:8080/movitapp-backend/oauth/token']
       }
     })
   ],
