@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
 
         // console.log(helper.decodeToken(data.access_token));
 
-        this.router.navigate(['/']);
+        this.router.navigate(['/']).then(() => { window.location.reload(); });
       }, err => {
         console.log(err);
         this.openSnackBarSuccess();

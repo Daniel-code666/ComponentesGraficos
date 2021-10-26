@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderService } from 'src/app/_service/loader.service';
+import { LoginService } from './_service/login.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,10 @@ export class AppComponent implements OnInit{
 
   public flagProgressBar: boolean = true;
 
-  constructor(public route: ActivatedRoute, private loader: LoaderService) {
+  public isLogged: boolean;
+
+  constructor(public route: ActivatedRoute, private loader: LoaderService, 
+              private login: LoginService, private router: Router) {
     this.progresValue = 0;
     this.rangeArray = new Array(100);
   }
@@ -30,17 +34,26 @@ export class AppComponent implements OnInit{
     this.loader.progressBarReactiva.subscribe(data => {
       this.flagProgressBar = data;
     });
+
+    this.isLogged = this.login.isLogged();
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    const element = document.documentElement, body = document.body, scrollTop = 'scrollTop', scrollHeight = 'scrollHeight';
-    this.progresValue = (element[scrollTop] || body[scrollTop]) / ((element[scrollHeight] || body[scrollHeight]) - element.clientHeight) * 100;
+    const element = document.documentElement, body = document.body, scrollTop = 'scrollTop',
+    scrollHeight = 'scrollHeight';
+    this.progresValue = (element[scrollTop] || body[scrollTop]) /
+    ((element[scrollHeight] || body[scrollHeight]) - element.clientHeight) * 100;
   }
 
   loadBar(): void {
     this.isLoading = true;
     setTimeout(() =>{ this.isLoading = false; }, 800);
+  }
+
+  logout(): void{
+    this.login.logOut();
+    // this.router.navigate(['/']).then(() => { window.location.reload(); });
   }
 
 }

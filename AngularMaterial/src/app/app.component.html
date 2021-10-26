@@ -32,10 +32,12 @@
       <mat-icon>search</mat-icon>
       <span>Buscar</span>
     </button>
-    <button mat-menu-item routerLink="/registro">
-      <mat-icon>account_circle</mat-icon>
-      <span>Registro</span>
-    </button>
+    <ng-container *ngIf="!this.isLogged">
+      <button mat-menu-item routerLink="/registro">
+        <mat-icon>account_circle</mat-icon>
+        <span>Registro</span>
+      </button>
+    </ng-container>
     <button mat-menu-item routerLink="/">
       <mat-icon>home</mat-icon>
       <span>Página principal</span>
@@ -45,20 +47,29 @@
 
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <button mat-menu-item routerLink="/login">
-      <mat-icon>login</mat-icon>
-      <span>Login</span>
-    </button>
+    <ng-container *ngIf="!this.isLogged">
+      <button mat-menu-item routerLink="/login">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
+    </ng-container>
 
-    <button mat-menu-item routerLink="/departamento">
-      <mat-icon>public</mat-icon>
-      <span>Departamentos</span>
-    </button>
+    <ng-container *ngIf="this.isLogged">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
 
-    <button mat-menu-item routerLink="/vehiculo">
-      <mat-icon>garage</mat-icon>
-      <span>Vehículos</span>
-    </button>
+      <button mat-menu-item routerLink="/departamento">
+        <mat-icon>public</mat-icon>
+        <span>Departamentos</span>
+      </button>
+
+      <button mat-menu-item routerLink="/vehiculo">
+        <mat-icon>garage</mat-icon>
+        <span>Vehículos</span>
+      </button>
+    </ng-container>
 
     <button mat-raised-button routerLink="/tabla" *ngIf="showFiller">Tabla en Angular</button>
     <br>
