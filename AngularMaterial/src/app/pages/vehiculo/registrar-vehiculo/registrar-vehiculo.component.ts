@@ -43,7 +43,8 @@ export class RegistrarVehiculoComponent implements OnInit {
 
     const v: Vehiculo = new Vehiculo();
 
-    v.placa = this.form.value.placa;
+    // v.placa = this.form.value.placa;
+    v.placa = `${this.form.value.placa}-${this.form.value.placanum}`;
     v.marca = this.selectedValue2;
     v.modelo = this.form.value.modelo;
     v.tipoVehiuclo = this.selectedValue;
@@ -69,7 +70,8 @@ export class RegistrarVehiculoComponent implements OnInit {
   private buildForm(): void{
     this.form = this.formBuilder.group(
       {
-        placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
+        placa: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+        placanum: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
         marca: ['', [Validators.required]],
         modelo: ['', [Validators.required, Validators.min(1970), Validators.max(2022)]],
         tipoVehiculo: ['', [Validators.required]],
@@ -79,6 +81,22 @@ export class RegistrarVehiculoComponent implements OnInit {
     // this.form.valueChanges.pipe(debounceTime(500)).subscribe(value => {
     //   console.log(value);
     // });
+  }
+
+  public inputValidator(event: any): void {
+    const pattern = /^[a-zA-Z]*$/;
+
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^a-zA-Z]/g, "");
+    }
+  }
+
+  public inputValidatorNum(event: any): void {
+    const pattern = /^[0-9]*$/;
+
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^0-9]/g, "");
+    }
   }
 
   openSnackBarSuccess(): void {

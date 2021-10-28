@@ -42,6 +42,10 @@ button {
     flex: 1 1 auto;
 }
 
+td {
+    padding-right: 8px;
+}
+
 .example-container {
     width: auto;
     height: 1000px;

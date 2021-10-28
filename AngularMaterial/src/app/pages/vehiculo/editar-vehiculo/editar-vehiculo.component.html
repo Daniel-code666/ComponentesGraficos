@@ -21,7 +21,7 @@
     <form [formGroup]="form" (ngSubmit)="editarVehiculo($event)">
         <mat-form-field appearance="fill">
             <mat-label>Placa</mat-label>
-            <input matInput [ngModel]="veh.placa" type="text" placeholder="Ej:abc-123" formControlName="placa"> 
+            <input readonly matInput [ngModel]="veh.placa" type="text" placeholder="Ej:abc-123" formControlName="placa"> 
         </mat-form-field>
         <div *ngIf="form.get('placa').errors && form.get('placa').touched">
             <p *ngIf="form.get('placa').hasError('maxlength') || form.get('placa').hasError('minlength')">
