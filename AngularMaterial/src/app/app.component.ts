@@ -11,7 +11,7 @@ import { LoginService } from './_service/login.service';
 
 export class AppComponent implements OnInit{
 
-  public flagProgressBar: boolean = true;
+  public flagProgressBar = true;
 
   public isLogged: boolean;
 
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit{
 
   loadBar(): void {
     this.isLoading = true;
-    setTimeout(() =>{ this.isLoading = false; }, 800);
+    setTimeout(() => { this.isLoading = false; }, 800);
   }
 
   logout(): void{

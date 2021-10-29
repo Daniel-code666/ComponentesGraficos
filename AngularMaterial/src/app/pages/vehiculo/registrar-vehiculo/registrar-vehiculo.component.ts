@@ -29,6 +29,7 @@ export class RegistrarVehiculoComponent implements OnInit {
   form: FormGroup;
 
   constructor(private VehService: VehiculoService, public loadService: LoaderService,
+              // tslint:disable-next-line: variable-name
               private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private router: Router,
               public errorInterceptor: ErrorInterceptorService, private updtList: VehiculoComponent) {
     this.buildForm();
@@ -87,7 +88,7 @@ export class RegistrarVehiculoComponent implements OnInit {
     const pattern = /^[a-zA-Z]*$/;
 
     if (!pattern.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[^a-zA-Z]/g, "");
+      event.target.value = event.target.value.replace(/[^a-zA-Z]/g, '');
     }
   }
 
@@ -95,12 +96,12 @@ export class RegistrarVehiculoComponent implements OnInit {
     const pattern = /^[0-9]*$/;
 
     if (!pattern.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[^0-9]/g, "");
+      event.target.value = event.target.value.replace(/[^0-9]/g, '');
     }
   }
 
   openSnackBarSuccess(): void {
-    this._snackBar.open(this.successMsg, 'Cerrar',{
+    this._snackBar.open(this.successMsg, 'Cerrar', {
       duration: 10000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,

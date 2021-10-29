@@ -74,7 +74,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
           });
       } */
 
-      if (error.status === 400){
+      if (error.error.status === 400){
         this.openSnackBar(str.slice(4, str.length));
       } else if (error.status === 401){
         if (str === 'No estas autorizado para acceder a este recurso')
@@ -82,7 +82,8 @@ export class ErrorInterceptorService implements HttpInterceptor {
           this.openSnackBar(str);
           this.router.navigate(['/unauthorized']);
         } else {
-          this.openSnackBar(str0.slice(4, str0.length));
+          // this.openSnackBar(str0.slice(4, str0.length));
+          this.openSnackBar('Nick o contraseña inválido');
         }
 
         if (error.error.error === 'invalid_token'){
@@ -101,6 +102,10 @@ export class ErrorInterceptorService implements HttpInterceptor {
         this.openSnackBar(error.error.message);
       } else if (error.error.status === 500) {
         this.router.navigate(['/error500']);
+      } else if (error.status === 400){
+        if (str0 === 'Bad credentials'){
+          this.openSnackBar('Contraseña incorrecta');
+        }
       }
       return EMPTY;
     }));

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from '../../loader/loader.service';
-import { LoginService } from 'src/app/_service/login.service'; 
+import { LoginService } from 'src/app/_service/login.service';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 
   // inyección de dependencias y librerías
   constructor(public loadService: LoaderService, private loginService: LoginService,
+              // tslint:disable-next-line: variable-name
               private formBuilder: FormBuilder, private router: Router, private _snackBar: MatSnackBar) {
     this.buildForm();
   }
@@ -53,10 +54,10 @@ export class LoginComponent implements OnInit {
         // console.log(helper.decodeToken(data.access_token));
 
         this.router.navigate(['/']).then(() => { window.location.reload(); });
-      }, err => {
+      }/* , err => {
         console.log(err);
         this.openSnackBarSuccess();
-      });
+      } */);
     } else{
       this.form.markAllAsTouched();
     }
