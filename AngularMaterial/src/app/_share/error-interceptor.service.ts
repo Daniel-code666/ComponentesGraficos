@@ -87,9 +87,9 @@ export class ErrorInterceptorService implements HttpInterceptor {
         }
 
         if (error.error.error === 'invalid_token'){
-          this.openSnackBar('Token inválido');
           sessionStorage.clear();
           this.router.navigate(['/unauthorized']).then(() => { window.location.reload(); });
+          this.openSnackBar('Token inválido');
         }
       }else if (error.status === 404) {
         this.openSnackBar(str.slice(4, str.length));
