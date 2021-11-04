@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { LoaderService } from 'src/app/_service/loader.service';
 import { LoginService } from './_service/login.service';
 import { GuardianService } from './_share/guardian.service';
