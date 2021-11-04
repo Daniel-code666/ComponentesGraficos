@@ -87,6 +87,10 @@ export class ErrorInterceptorService implements HttpInterceptor {
           this.openSnackBar('Nick o contraseña inválido');
         }
 
+        // if (error.error.error === 'unauthorized'){
+        //   this.openSnackBar('Nombre de usuario incorrecto');
+        // }
+
         if (error.error.error === 'invalid_token'){
           sessionStorage.clear();
           this.router.navigate(['/unauthorized']);

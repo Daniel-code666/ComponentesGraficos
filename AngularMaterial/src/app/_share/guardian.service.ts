@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginService } from '../_service/login.service';
 import { interval, timer } from 'rxjs';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,16 @@ import { interval, timer } from 'rxjs';
 
 export class GuardianService implements CanActivate{
 
-  userActivity: number;
+  userActivity: any;
   userInactive: Subject<any> = new Subject();
 
-  constructor(private login: LoginService, private route: Router) {}
+  stopFlag: any;
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  // tslint:disable-next-line: variable-name
+  constructor(private login: LoginService, private route: Router, private _snackBar: MatSnackBar) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
               boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
@@ -32,7 +39,11 @@ export class GuardianService implements CanActivate{
         const rol = decodedToken.authorities[0];
         const url = state.url;
 
-        
+        this.stopFlag = this.userInactive.subscribe((data) => {
+          this.login.logOut();
+          this.openSnackBar('Tiempo de sesión expirado');
+          return false;
+        });
 
         if (url.includes('usuario') && rol === 'Administrador'){
           return true;
@@ -45,31 +56,31 @@ export class GuardianService implements CanActivate{
           return false;
         }
 
-        return true;
+        // return true;
       }else{
         // this.login.logOut();
         sessionStorage.clear();
         return false;
       }
 
-      return true;
+      // return true;
     } else {
       this.route.navigate(['/unauthorized']);
       return false;
     }
   }
 
+  openSnackBar(error: string): void {
+    this._snackBar.open(error, 'Cerrar', {
+      duration: 10000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
   setTimeout(): void {
-    this.userActivity = setTimeout(() => this.userInactive.next(undefined), 3000);
+    if (this.login.isLogged()){
+      this.userActivity = setTimeout(() => this.userInactive.next(undefined), 10000);
+    }
   }
-
-  @HostListener('window:onmousemove') refreshUserState(): boolean{
-    console.log('se movió el maus');
-    return true;
-  }
-
-  // @HostListener('window:mousemove') refreshUserState(): void {
-  //   clearTimeout(this.userActivity);
-  //   this.setTimeout();
-  // }
 }
