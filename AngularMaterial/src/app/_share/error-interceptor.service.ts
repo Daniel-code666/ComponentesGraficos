@@ -20,6 +20,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
   resultJson: ResultJson;
   ResultJsonString: any;
 
+  // tslint:disable-next-line: variable-name
   constructor(private _snackBar: MatSnackBar, private router: Router, private loader: LoaderService,
               private errorLog: ErrorLogService) { }
 
@@ -88,7 +89,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
         if (error.error.error === 'invalid_token'){
           sessionStorage.clear();
-          this.router.navigate(['/unauthorized']).then(() => { window.location.reload(); });
+          this.router.navigate(['/unauthorized']);
           this.openSnackBar('Token inválido');
         }
       }else if (error.status === 404) {

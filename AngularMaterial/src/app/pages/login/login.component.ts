@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   // inyección de dependencias y librerías
-  constructor(public loadService: LoaderService, private loginService: LoginService,
+  constructor(public loadService: LoaderService, public loginService: LoginService,
               // tslint:disable-next-line: variable-name
               private formBuilder: FormBuilder, private router: Router, private _snackBar: MatSnackBar) {
     this.buildForm();
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
         // console.log(helper.decodeToken(data.access_token));
 
-        this.router.navigate(['/']).then(() => { window.location.reload(); });
+        this.router.navigate(['/']);
       }/* , err => {
         console.log(err);
         this.openSnackBarSuccess();

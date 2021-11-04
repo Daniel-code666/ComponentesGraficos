@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { LoaderService } from 'src/app/_service/loader.service';
 import { LoginService } from './_service/login.service';
 
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit{
   public isLogged: boolean;
 
   constructor(public route: ActivatedRoute, private loader: LoaderService,
-              private login: LoginService, private router: Router) {
+              public login: LoginService, private router: Router) {
     this.progresValue = 0;
     this.rangeArray = new Array(100);
   }
@@ -34,12 +35,11 @@ export class AppComponent implements OnInit{
     this.loader.progressBarReactiva.subscribe(data => {
       this.flagProgressBar = data;
     });
-
-    this.isLogged = this.login.isLogged();
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
+    // tslint:disable-next-line: one-variable-per-declaration
     const element = document.documentElement, body = document.body, scrollTop = 'scrollTop',
     scrollHeight = 'scrollHeight';
     this.progresValue = (element[scrollTop] || body[scrollTop]) /
@@ -55,7 +55,6 @@ export class AppComponent implements OnInit{
     this.login.logOut();
     // this.router.navigate(['/']).then(() => { window.location.reload(); });
   }
-
 }
 
 

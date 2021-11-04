@@ -13,6 +13,8 @@ import { NotFoundComponent } from 'src/app/pages/not-found/not-found.component';
 import { IndexComponent } from 'src/app/pages/index/index.component';
 import { Error500Component } from 'src/app/pages/error500/error500.component';
 import { UnauthorizedComponent } from 'src/app/pages/unauthorized/unauthorized.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { GuardianService } from 'src/app/_share/guardian.service';
 
 const routes: Routes = [
   { path: '', component: IndexComponent},
@@ -20,19 +22,20 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent},
   { path: 'buscar', component: BuscarComponent},
   { path: 'tabla', component: TablaComponent },
-  { path: 'departamento', component: DepartamentoComponent, children:
+  { path: 'departamento', component: DepartamentoComponent, canActivate: [GuardianService], children:
     [
-      { path: 'ciudad/:idDep', component: CiudadComponent}
+      { path: 'ciudad/:idDep', component: CiudadComponent, canActivate: [GuardianService]}
     ]
   },
-  { path: 'vehiculo', component: VehiculoComponent, children:
+  { path: 'vehiculo', component: VehiculoComponent, canActivate: [GuardianService], children:
     [
-      { path: 'registrar-vehiculo', component: RegistrarVehiculoComponent},
-      { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent}
+      { path: 'registrar-vehiculo', component: RegistrarVehiculoComponent, canActivate: [GuardianService]},
+      { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent, canActivate: [GuardianService]}
     ]
   },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'error500', component: Error500Component},
+  { path: 'usuario', component: UsuarioComponent, canActivate: [GuardianService]},
   { path: '**', component: NotFoundComponent}
   // { path: '**', redirectTo: 'not-found'}
 ];
