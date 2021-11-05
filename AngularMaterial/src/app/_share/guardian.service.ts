@@ -80,7 +80,7 @@ export class GuardianService implements CanActivate{
 
   setTimeout(): void {
     if (this.login.isLogged()){
-      this.userActivity = setTimeout(() => this.userInactive.next(undefined), 10000);
+      this.userActivity = setTimeout(() => this.userInactive.next(undefined), 100000);
     }
   }
 }
