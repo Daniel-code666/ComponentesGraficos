@@ -15,6 +15,7 @@ import { Error500Component } from 'src/app/pages/error500/error500.component';
 import { UnauthorizedComponent } from 'src/app/pages/unauthorized/unauthorized.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { GuardianService } from 'src/app/_share/guardian.service';
+import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/registrarusuario.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent},
@@ -35,7 +36,11 @@ const routes: Routes = [
   },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'error500', component: Error500Component},
-  { path: 'usuario', component: UsuarioComponent, canActivate: [GuardianService]},
+  { path: 'usuario', component: UsuarioComponent, canActivate: [GuardianService], children:
+    [
+      { path: 'registrarusuario', component: RegistrarusuarioComponent, canActivate: [GuardianService]}
+    ]
+  },
   { path: '**', component: NotFoundComponent}
   // { path: '**', redirectTo: 'not-found'}
 ];

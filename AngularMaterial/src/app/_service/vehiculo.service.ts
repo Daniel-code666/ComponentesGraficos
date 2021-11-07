@@ -44,11 +44,11 @@ export class VehiculoService {
 
   constructor(private http: HttpClient) { }
 
-  public guardar(v: Vehiculo){
+  public guardar(v: Vehiculo): any{
     return this.http.post(`${this.url}/guardar`, v);
   }
 
-  public editarVeh(v: Vehiculo){
+  public editarVeh(v: Vehiculo): any{
     return this.http.put(`${this.url}/editar`, v);
   }
 
@@ -64,7 +64,7 @@ export class VehiculoService {
     );
   }
 
-  public getVehById(id: number){
+  public getVehById(id: number): any{
     return this.http.get(`${this.url}/listar/` + id);
   }
 }

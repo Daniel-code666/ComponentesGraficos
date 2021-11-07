@@ -2,6 +2,23 @@
     <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </div>
 
+<div class="row" >
+    <div class="column">
+
+    </div>
+    <div class="column" [hidden]="route.children.length !== 0">
+        <h2 class="center">Ver lista de vehículos</h2>
+    </div>
+    <div class="column" [hidden]="route.children.length !== 0">
+        <div style="text-align: center;">
+            <button mat-icon-button routerLink="/usuario/registrarusuario"> 
+                <mat-icon>person_add</mat-icon>
+                <span>Registrar usuario</span>
+            </button>
+        </div>
+    </div>
+</div>
+
 <div [hidden]="route.children.length !== 0">
     <div fxLayout fxLayoutAlign="center center">
         <mat-form-field fxFlex="40%">
@@ -59,4 +76,16 @@
                     (page)="onPaginateChange($event)"
                     showFirstLastButtons>
     </mat-paginator>
+</div>
+
+<div class="row">
+    <div class="column">
+
+    </div>
+    <div class="column">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="column">
+
+    </div>
 </div>

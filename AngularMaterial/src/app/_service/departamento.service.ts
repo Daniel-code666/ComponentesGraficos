@@ -17,12 +17,11 @@ export class DepartamentoService{
 
   constructor(private http: HttpClient) { }
 
-  public list(){
+  public list(): any{
     return this.http.get<Departamento[]>(`${this.url2}/listar`);
   }
 
-  public listCiudades(id: number)
-  {
+  public listCiudades(id: number): any{
     return this.http.get<Ciudad[]>(`${this.url2}/ciudad/listarPorDepartamnto/` + id);
   }
 }

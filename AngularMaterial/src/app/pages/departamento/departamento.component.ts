@@ -21,10 +21,10 @@ export class DepartamentoComponent implements OnInit {
   @ViewChild('categoryPaginator') categoryPaginator: MatPaginator;
 
   constructor(private departService: DepartamentoService, public loadService: LoaderService,
-    public route: ActivatedRoute) { }
+              public route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.departService.list().subscribe(data => {
+    this.departService.list().subscribe((data: any[]) => {
       data.forEach(element => {
         this.depList.push({idDepartamento: element.idDepartamento, nombre: element.nombre});
         console.log(`Código: ${element.idDepartamento} - Nombre ${element.nombre}`);
