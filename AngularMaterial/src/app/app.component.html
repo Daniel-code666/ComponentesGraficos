@@ -28,7 +28,7 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <ng-container *ngIf="this.login.isLogged()">
+    <ng-container *ngIf="this.login.isLogged() && this.login.rolType() == 'Administrador'">
       <button mat-menu-item routerLink="/buscar">
         <mat-icon>search</mat-icon>
         <span>Buscar</span>
@@ -55,13 +55,16 @@
         <span>Login</span>
       </button>
     </ng-container>
+    <!--Administrador-->
 
     <ng-container *ngIf="this.login.isLogged()">
       <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Cerrar sesión</span>
       </button>
+    </ng-container>
 
+    <ng-container *ngIf="this.login.isLogged() && this.login.rolType() == 'Administrador'">
       <button mat-menu-item routerLink="/departamento">
         <mat-icon>public</mat-icon>
         <span>Departamentos</span>

@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,15 @@ export class LoginService {
     const tk = sessionStorage.getItem(environment.TOKEN);
 
     return tk != null;
+  }
+
+  public rolType(): string{
+    const helper = new JwtHelperService();
+
+    const tk = sessionStorage.getItem(environment.TOKEN);
+
+    const decodedToken = helper.decodeToken(tk);
+
+    return decodedToken.authorities;
   }
 }
