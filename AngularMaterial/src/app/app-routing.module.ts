@@ -16,6 +16,7 @@ import { UnauthorizedComponent } from 'src/app/pages/unauthorized/unauthorized.c
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { GuardianService } from 'src/app/_share/guardian.service';
 import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/registrarusuario.component';
+import { ConductorComponent } from './pages/conductor/conductor.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent},
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: 'registrarusuario', component: RegistrarusuarioComponent, canActivate: [GuardianService]}
     ]
   },
+  { path: 'conductor', component: ConductorComponent},
   { path: '**', component: NotFoundComponent}
   // { path: '**', redirectTo: 'not-found'}
 ];

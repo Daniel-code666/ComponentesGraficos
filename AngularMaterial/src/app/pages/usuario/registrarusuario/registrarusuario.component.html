@@ -163,7 +163,7 @@
                         <mat-label>Ciudad</mat-label>
                         <mat-select [(value)]="citySelected" formControlName="ciudad">
                             <mat-option [value]="city.idCiudad" *ngFor="let city of this.cityList">
-                                {{city.nombre}}
+                                {{city.idCiudad}}. {{city.nombre}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

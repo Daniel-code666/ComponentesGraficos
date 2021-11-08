@@ -7,9 +7,11 @@ import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { Ciudad } from 'src/app/_model/ciudad';
 import { Departamento } from 'src/app/_model/departamento';
+import { Usuario } from 'src/app/_model/usuario';
 import { DepartamentoService } from 'src/app/_service/departamento.service';
 import { UsuarioService } from 'src/app/_service/usuario.service';
 import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
+import { UsuarioComponent } from '../usuario.component';
 
 @Component({
   selector: 'app-registrarusuario',
@@ -33,9 +35,10 @@ export class RegistrarusuarioComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private user: UsuarioService, private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private router: Router,
-              public errorInterceptor: ErrorInterceptorService, public loadService: LoaderService,
-              public dept: DepartamentoService) {
+  constructor(private user: UsuarioService, private formBuilder: FormBuilder, private _snackBar: MatSnackBar,
+              private router: Router, public errorInterceptor: ErrorInterceptorService,
+              public loadService: LoaderService, public dept: DepartamentoService, private User: UsuarioService,
+              private updtUserList: UsuarioComponent) {
                 this.buildForm();
               }
 
@@ -54,8 +57,35 @@ export class RegistrarusuarioComponent implements OnInit {
   insertUser(event: Event): void{
     event.preventDefault();
 
-    if (this.form.valid){
+    const user: Usuario = new Usuario();
 
+    user.documento = this.form.value.documento;
+    user.nombre = this.form.value.nombre;
+    user.apellido = this.form.value.apellido;
+    user.nick = this.form.value.nick;
+    user.clave = this.form.value.clave;
+    user.direccion = this.form.value.clave;
+    user.celular = this.form.value.celular;
+    user.celularAux = this.form.value.celularAux;
+    user.correo = this.form.value.correo;
+    user.tipoDocumento = {
+      idTipoDocumento: 1
+    };
+    user.rol = {
+      idRol: 4
+    };
+    user.ciudad = {
+      idCiudad: Number(this.citySelected)
+    };
+
+    if (this.form.valid){
+      console.log(user);
+
+      this.User.insertUser(user).subscribe(success => {
+        console.log('registrado con éxito');
+        this.updtUserList.listUsers();
+        this.router.navigate(['/usuario']);
+      });
     }else{
       this.form.markAllAsTouched();
     }

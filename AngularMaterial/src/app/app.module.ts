@@ -33,6 +33,7 @@ import { environment } from 'src/environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/registrarusuario.component';
+import { ConductorComponent } from './pages/conductor/conductor.component';
 
 export function tokenGetter(): any{
   const tk = sessionStorage.getItem(environment.TOKEN);
@@ -56,7 +57,8 @@ export function tokenGetter(): any{
     Error500Component,
     UnauthorizedComponent,
     UsuarioComponent,
-    RegistrarusuarioComponent
+    RegistrarusuarioComponent,
+    ConductorComponent
   ],
   imports: [
     BrowserModule,

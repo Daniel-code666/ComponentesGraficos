@@ -43,6 +43,10 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
+  public insertUser(u: Usuario): any{
+    return this.http.post(`${this.url}/guardar`, u);
+  }
+
   public getUsers(page: number, size: number): Observable<UserInfo>{
     let params = new HttpParams();
 
