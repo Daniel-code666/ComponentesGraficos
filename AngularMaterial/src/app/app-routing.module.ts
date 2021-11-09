@@ -17,6 +17,8 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { GuardianService } from 'src/app/_share/guardian.service';
 import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/registrarusuario.component';
 import { ConductorComponent } from './pages/conductor/conductor.component';
+import { AsociarComponent } from './pages/vehiculo/asociar/asociar.component';
+import { PaisComponent } from './pages/pais/pais.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent},
@@ -32,7 +34,8 @@ const routes: Routes = [
   { path: 'vehiculo', component: VehiculoComponent, canActivate: [GuardianService], children:
     [
       { path: 'registrar-vehiculo', component: RegistrarVehiculoComponent, canActivate: [GuardianService]},
-      { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent, canActivate: [GuardianService]}
+      { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent, canActivate: [GuardianService]},
+      { path: 'asociar', component: AsociarComponent, canActivate: [GuardianService]}
     ]
   },
   { path: 'unauthorized', component: UnauthorizedComponent },
@@ -42,7 +45,8 @@ const routes: Routes = [
       { path: 'registrarusuario', component: RegistrarusuarioComponent, canActivate: [GuardianService]}
     ]
   },
-  { path: 'conductor', component: ConductorComponent},
+  { path: 'conductor', component: ConductorComponent },
+  { path: 'pais', component: PaisComponent},
   { path: '**', component: NotFoundComponent}
   // { path: '**', redirectTo: 'not-found'}
 ];

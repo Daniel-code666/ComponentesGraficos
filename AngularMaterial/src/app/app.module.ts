@@ -36,6 +36,8 @@ import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/regi
 import { ConductorComponent } from './pages/conductor/conductor.component';
 
 import { NgImageSliderModule } from 'ng-image-slider';
+import { AsociarComponent } from './pages/vehiculo/asociar/asociar.component';
+import { PaisComponent } from './pages/conductor/pais/pais.component';
 
 export function tokenGetter(): any{
   const tk = sessionStorage.getItem(environment.TOKEN);
@@ -60,7 +62,9 @@ export function tokenGetter(): any{
     UnauthorizedComponent,
     UsuarioComponent,
     RegistrarusuarioComponent,
-    ConductorComponent
+    ConductorComponent,
+    AsociarComponent,
+    PaisComponent
   ],
   imports: [
     BrowserModule,

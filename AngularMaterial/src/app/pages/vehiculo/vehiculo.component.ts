@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { map, tap } from 'rxjs/operators';
 import { MatSort, Sort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 // import { LoaderService } from 'src/app/_service/loader.service';
 
 @Component({
@@ -28,10 +29,14 @@ export class VehiculoComponent implements OnInit {
 
   showId = false;
 
+  animal: string;
+  name: string;
+
   @ViewChild('vehiclePaginator') categoryPaginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private VehService: VehiculoService, public route: ActivatedRoute, public loader: LoaderService) {
+  constructor(private VehService: VehiculoService, public route: ActivatedRoute, public loader: LoaderService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -69,5 +74,12 @@ export class VehiculoComponent implements OnInit {
 
   public doFilter = (value: string) => {
     this.vehicleList.filter = value.trim().toLocaleLowerCase();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(VehiculoComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
   }
 }
