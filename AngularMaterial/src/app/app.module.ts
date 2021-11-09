@@ -37,7 +37,8 @@ import { ConductorComponent } from './pages/conductor/conductor.component';
 
 import { NgImageSliderModule } from 'ng-image-slider';
 import { AsociarComponent } from './pages/vehiculo/asociar/asociar.component';
-import { PaisComponent } from './pages/conductor/pais/pais.component';
+
+import { PaisComponent } from './pages/pais/pais.component';
 
 export function tokenGetter(): any{
   const tk = sessionStorage.getItem(environment.TOKEN);

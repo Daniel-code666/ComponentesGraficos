@@ -42,7 +42,7 @@ export class PaisComponent implements OnInit {
     },
     {
       image: 'assets/monserrate.jpg',
-      thumbImage: 'assets/moserrate.jpg',
+      thumbImage: 'assets/monserrate.jpg',
       alt: 'Monserrate',
       title: 'Monserrate'
     },
@@ -52,7 +52,7 @@ export class PaisComponent implements OnInit {
       alt: 'Medallo papá',
       title: 'Medellín'
     },
-    /* {
+    {
       image: 'assets/guatape.jpg',
       thumbImage: 'assets/guatape.jpg',
       alt: 'Güatapé',
@@ -81,7 +81,7 @@ export class PaisComponent implements OnInit {
       thumbImage: 'assets/tatacoa.jpg',
       alt: 'Desierto de la Tatacoa',
       title: 'Desierto de la Tatacoa'
-    } */
+    }
   ];
 
   ngOnInit(): void {
