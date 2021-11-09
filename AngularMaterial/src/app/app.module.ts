@@ -35,6 +35,8 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/registrarusuario.component';
 import { ConductorComponent } from './pages/conductor/conductor.component';
 
+import { NgImageSliderModule } from 'ng-image-slider';
+
 export function tokenGetter(): any{
   const tk = sessionStorage.getItem(environment.TOKEN);
   return tk != null ? tk : '';
@@ -68,6 +70,7 @@ export function tokenGetter(): any{
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
+    NgImageSliderModule,
     ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
