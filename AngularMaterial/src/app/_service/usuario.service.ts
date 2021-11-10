@@ -64,5 +64,9 @@ export class UsuarioService {
       catchError(err => throwError(err))
     );
   }
+
+  public deleteUser(idUsuario: number): any{
+    return this.http.delete(`${this.url}/eliminar/${idUsuario}`);
+  }
 }
 

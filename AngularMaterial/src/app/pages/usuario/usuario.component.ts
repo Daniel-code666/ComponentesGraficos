@@ -16,7 +16,7 @@ import { UsuarioService, UserInfo } from 'src/app/_service/usuario.service';
 export class UsuarioComponent implements OnInit {
 
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['nombre', 'apellido', 'nick', 'documento', 'correo', 'rol', 'ciudad', 'ciudad2'];
+  displayedColumns: string[] = ['nombre', 'apellido', 'nick', 'documento', 'correo', 'rol', 'ciudad', 'ciudad2', 'acciones'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
 
   dataSource: UserInfo;
@@ -42,6 +42,14 @@ export class UsuarioComponent implements OnInit {
       this.userList = new MatTableDataSource(data.content);
       this.userList.sort = this.sort;
       // this.loader.progressBarReactiva.next(true);
+    });
+  }
+
+  public deleteUser(idUsuario: number): void{
+    console.log(idUsuario);
+    this.userServ.deleteUser(idUsuario).subscribe(data => {
+      console.log('Usuario eliminado');
+      this.loadUserInfo();
     });
   }
 
