@@ -31,11 +31,11 @@ export class UsuarioComponent implements OnInit {
   constructor(public loader: LoaderService, public route: ActivatedRoute, private userServ: UsuarioService) { }
 
   ngOnInit(): void {
-    this.loadUserInfo();
+    this.loadUserInfo(this.page, this.size);
   }
 
-  private loadUserInfo(): void{
-    this.userServ.getUsers(0, 3).pipe(
+  private loadUserInfo(page: number, size: number): void{
+    this.userServ.getUsers(page, size).pipe(
       tap(data => console.log(data)),
       map((uInfo: UserInfo) => this.dataSource = uInfo)
     ).subscribe(data => {
@@ -49,7 +49,7 @@ export class UsuarioComponent implements OnInit {
     console.log(idUsuario);
     this.userServ.deleteUser(idUsuario).subscribe(data => {
       console.log('Usuario eliminado');
-      this.loadUserInfo();
+      this.loadUserInfo(this.page, this.size);
     });
   }
 

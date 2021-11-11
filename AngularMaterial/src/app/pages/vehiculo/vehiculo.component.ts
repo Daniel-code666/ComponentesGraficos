@@ -41,11 +41,11 @@ export class VehiculoComponent implements OnInit {
 
   ngOnInit(): void {
     // this.loader.progressBarReactiva.next(false);
-    this.loadVehicleInfo();
+    this.loadVehicleInfo(this.page, this.size);
   }
 
   // tslint:disable-next-line: typedef
-  private loadVehicleInfo(){
+  private loadVehicleInfo(page: number, size: number){
     this.VehService.getVehPag(0, 3).pipe(
       tap(data => console.log(data)),
       map((vehInfo: VehicleInfo) => this.dataSource = vehInfo)
