@@ -19,6 +19,7 @@ import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/regi
 import { ConductorComponent } from './pages/conductor/conductor.component';
 import { AsociarComponent } from './pages/vehiculo/asociar/asociar.component';
 import { PaisComponent } from './pages/pais/pais.component';
+import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-usuario.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent},
@@ -42,7 +43,8 @@ const routes: Routes = [
   { path: 'error500', component: Error500Component},
   { path: 'usuario', component: UsuarioComponent, canActivate: [GuardianService], children:
     [
-      { path: 'registrarusuario', component: RegistrarusuarioComponent, canActivate: [GuardianService]}
+      { path: 'registrarusuario', component: RegistrarusuarioComponent, canActivate: [GuardianService]},
+      { path: 'editarusuario/:idUsuario', component: EditarUsuarioComponent, canActivate: [GuardianService]}
     ]
   },
   { path: 'conductor', component: ConductorComponent },

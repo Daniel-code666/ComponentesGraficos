@@ -7,6 +7,8 @@ import { map, tap } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { Usuario } from 'src/app/_model/usuario';
 import { UsuarioService, UserInfo } from 'src/app/_service/usuario.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmacionDialogComponent } from '../confirmacion-dialog/confirmacion-dialog.component';
 
 @Component({
   selector: 'app-usuario',
@@ -28,7 +30,10 @@ export class UsuarioComponent implements OnInit {
   @ViewChild('userPaginator') userPaginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public loader: LoaderService, public route: ActivatedRoute, private userServ: UsuarioService) { }
+  dialogRef: MatDialogRef<ConfirmacionDialogComponent>;
+
+  constructor(public loader: LoaderService, public route: ActivatedRoute, private userServ: UsuarioService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadUserInfo(this.page, this.size);
@@ -47,10 +52,24 @@ export class UsuarioComponent implements OnInit {
 
   public deleteUser(idUsuario: number): void{
     console.log(idUsuario);
-    this.userServ.deleteUser(idUsuario).subscribe(data => {
-      console.log('Usuario eliminado');
-      this.loadUserInfo(this.page, this.size);
+
+    this.dialogRef = this.dialog.open(ConfirmacionDialogComponent, {
+      disableClose: false
     });
+
+    this.dialogRef.componentInstance.confirmMessage = '¿Eliminar el usuario?';
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.userServ.deleteUser(idUsuario).subscribe(data => {
+          console.log('Usuario eliminado');
+          this.loadUserInfo(this.page, this.size);
+        });
+      }
+
+      this.dialogRef = null;
+    });
+
   }
 
   public onPaginateChange(event: PageEvent): void{

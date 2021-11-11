@@ -1,4 +1,5 @@
 export class Usuario{
+    idUsuario: number;
     documento: string;
     nombre: string;
     apellido: string;

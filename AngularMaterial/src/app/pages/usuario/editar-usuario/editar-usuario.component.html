@@ -1,13 +1,12 @@
-<h2 class="center">Registrar usuario</h2>
-<div *ngIf="loadService.isLoading | async" class="loader-container">
+<div *ngIf="loader.isLoading | async" class="loader-container">
     <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </div>
 
 <div>
-    <form [formGroup]="form" (ngSubmit)="insertUser($event)">
+    <form [formGroup]="form" (ngSubmit)="editUser($event)">
         <mat-form-field>
             <mat-label>Documento</mat-label>
-            <input matInput placeholder="Ej:1017102108" formControlName="documento" (input)="inputValidatorDoc($event)">
+            <input matInput readonly [ngModel]="userInfo.documento" formControlName="documento">
         </mat-form-field>
         <div *ngIf="form.get('documento').errors && form.get('documento').touched">
             <mat-error *ngIf="form.get('documento').hasError('required')">
@@ -23,7 +22,7 @@
 
         <mat-form-field>
             <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Ej:Pepe" formControlName="nombre" (input)="inputValidator($event)">
+            <input matInput [ngModel]="userInfo.nombre" placeholder="Ej:Pepe" formControlName="nombre" (input)="inputValidator($event)">
         </mat-form-field>
         <div *ngIf="form.get('nombre').errors && form.get('nombre').touched">
             <mat-error *ngIf="form.get('nombre').hasError('required')">
@@ -39,7 +38,7 @@
 
         <mat-form-field>
             <mat-label>Apellido</mat-label>
-            <input matInput placeholder="Ej:Grillo" formControlName="apellido" (input)="inputValidator($event)">
+            <input matInput [ngModel]="userInfo.apellido" placeholder="Ej:Grillo" formControlName="apellido" (input)="inputValidator($event)">
         </mat-form-field>
         <div *ngIf="form.get('apellido').errors && form.get('apellido').touched">
             <mat-error *ngIf="form.get('apellido').hasError('required')">
@@ -55,7 +54,7 @@
 
         <mat-form-field>
             <mat-label>Nickname</mat-label>
-            <input matInput placeholder="Ej:PepeTheOG_92" formControlName="nick">
+            <input matInput [ngModel]="userInfo.nick" placeholder="Ej:PepeTheOG_92" formControlName="nick">
         </mat-form-field>
         <div *ngIf="form.get('nick').errors && form.get('nick').touched">
             <mat-error *ngIf="form.get('nick').hasError('required')">
@@ -81,7 +80,7 @@
 
         <mat-form-field>
             <mat-label>Dirección</mat-label>
-            <input matInput placeholder="Ej:Carrera 6#12 - 20" formControlName="direccion">
+            <input matInput [ngModel]="userInfo.direccion" placeholder="Ej:Carrera 6#12 - 20" formControlName="direccion">
         </mat-form-field>
         <div *ngIf="form.get('direccion').errors && form.get('direccion').touched">
             <mat-error *ngIf="form.get('direccion').hasError('required')">
@@ -97,7 +96,7 @@
 
         <mat-form-field>
             <mat-label>Celular</mat-label>
-            <input matInput placeholder="Ej:3102342332" formControlName="celular" (input)="inputValidatorDoc($event)">
+            <input matInput [ngModel]="userInfo.celular" placeholder="Ej:3102342332" formControlName="celular" (input)="inputValidatorDoc($event)">
         </mat-form-field>
         <div *ngIf="form.get('celular').errors && form.get('celular').touched">
             <mat-error *ngIf="form.get('celular').hasError('required')">
@@ -113,7 +112,7 @@
 
         <mat-form-field>
             <mat-label>Celular auxiliar - opcional</mat-label>
-            <input matInput placeholder="Ej:3102342332" formControlName="celularAux" (input)="inputValidatorDoc($event)">
+            <input matInput [ngModel]="userInfo.celularAux" placeholder="Ej:3102342332" formControlName="celularAux" (input)="inputValidatorDoc($event)">
         </mat-form-field>
         <div *ngIf="form.get('celularAux').errors && form.get('celularAux').touched">
             <mat-error *ngIf="form.get('celularAux').hasError('minlength')">
@@ -126,7 +125,7 @@
 
         <mat-form-field>
             <mat-label>Correo</mat-label>
-            <input matInput placeholder="Ej:pep@gmail.com" formControlName="correo">
+            <input matInput [ngModel]="userInfo.correo" placeholder="Ej:pep@gmail.com" formControlName="correo">
         </mat-form-field>
         <div *ngIf="form.get('correo').errors && form.get('correo').touched">
             <mat-error *ngIf="form.get('correo').hasError('required')">
@@ -145,7 +144,7 @@
                 <td>
                     <mat-form-field>
                         <mat-label>Departamento</mat-label>
-                        <mat-select [(value)]="deptSelected" formControlName="departamento" (selectionChange)="loadCities($event.value)">
+                        <mat-select [ngModel]="userInfo.ciudad.departamento.nombre" [(value)]="deptSelected" formControlName="departamento" (selectionChange)="loadCities($event.value)">
                             <mat-option [value]="dept.idDepartamento" *ngFor="let dept of this.deptList">
                                 {{dept.idDepartamento}}. {{dept.nombre}}
                             </mat-option>
@@ -161,7 +160,7 @@
                 <td>
                     <mat-form-field>
                         <mat-label>Ciudad</mat-label>
-                        <mat-select [(value)]="citySelected" formControlName="ciudad">
+                        <mat-select [ngModel]="userInfo.ciudad.nombre" [(value)]="citySelected" formControlName="ciudad">
                             <mat-option [value]="city.idCiudad" *ngFor="let city of this.cityList">
                                 {{city.idCiudad}}. {{city.nombre}}
                             </mat-option>
