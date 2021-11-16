@@ -47,8 +47,8 @@ const routes: Routes = [
       { path: 'editarusuario/:idUsuario', component: EditarUsuarioComponent, canActivate: [GuardianService]}
     ]
   },
-  { path: 'conductor', component: ConductorComponent },
-  { path: 'pais', component: PaisComponent},
+  { path: 'conductor', component: ConductorComponent, canActivate: [GuardianService]},
+  { path: 'pais', component: PaisComponent, canActivate: [GuardianService]},
   { path: '**', component: NotFoundComponent}
   // { path: '**', redirectTo: 'not-found'}
 ];

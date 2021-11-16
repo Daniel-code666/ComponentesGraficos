@@ -51,6 +51,10 @@ export class GuardianService implements CanActivate{
           return true;
         } else if (url.includes('departamento') && rol === 'Administrador'){
           return true;
+        } else if (url.includes('conductor') && rol === 'Conductor'){
+          return true;
+        } else if (url.includes('pais') && rol === 'Conductor'){
+          return true;
         } else {
           this.route.navigate(['/unauthorized']);
           return false;
