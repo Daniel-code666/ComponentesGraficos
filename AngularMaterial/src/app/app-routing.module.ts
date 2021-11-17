@@ -20,6 +20,7 @@ import { ConductorComponent } from './pages/conductor/conductor.component';
 import { AsociarComponent } from './pages/vehiculo/asociar/asociar.component';
 import { PaisComponent } from './pages/pais/pais.component';
 import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-usuario.component';
+import { ConductoresAsociadosComponent } from './pages/vehiculo/conductores-asociados/conductores-asociados.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent},
@@ -36,7 +37,8 @@ const routes: Routes = [
     [
       { path: 'registrar-vehiculo', component: RegistrarVehiculoComponent, canActivate: [GuardianService]},
       { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent, canActivate: [GuardianService]},
-      { path: 'asociar', component: AsociarComponent, canActivate: [GuardianService]}
+      { path: 'asociar', component: AsociarComponent, canActivate: [GuardianService]},
+      { path: 'conductores-asociados/:idVehiculo', component: ConductoresAsociadosComponent, canActivate:[GuardianService]}
     ]
   },
   { path: 'unauthorized', component: UnauthorizedComponent },

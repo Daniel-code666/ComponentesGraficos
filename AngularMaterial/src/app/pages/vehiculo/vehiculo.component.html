@@ -54,10 +54,16 @@
         </ng-container>
 
         <ng-container matColumnDef="accion">
-            <th id="accion" mat-header-cell *matHeaderCellDef>Acción</th>
-            <td mat-cell *matCellDef="let element">
+            <th id="accion" mat-header-cell *matHeaderCellDef style="text-align: center;">Acción</th>
+            <td mat-cell *matCellDef="let element" style="text-align: center;">
                 <button mat-icon-button [routerLink]="['/vehiculo/editar-vehiculo',element.idVehiculo]">
                     <mat-icon>car_rental</mat-icon>
+                </button>
+                <button mat-icon-button [routerLink]="['/vehiculo/conductores-asociados',element.idVehiculo]">
+                    <mat-icon>person_outline</mat-icon>
+                </button>
+                <button mat-icon-button [routerLink]="['/vehiculo/conductores-noAsociados',element.idVehiculo]">
+                    <mat-icon>person_off</mat-icon>
                 </button>
             </td>
         </ng-container>

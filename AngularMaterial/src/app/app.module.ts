@@ -42,6 +42,7 @@ import { PaisComponent } from './pages/pais/pais.component';
 import { ConfirmacionDialogComponent } from './pages/confirmacion-dialog/confirmacion-dialog.component';
 import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-usuario.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ConductoresAsociadosComponent } from './pages/vehiculo/conductores-asociados/conductores-asociados.component';
 
 export function tokenGetter(): any{
   const tk = sessionStorage.getItem(environment.TOKEN);
@@ -70,7 +71,8 @@ export function tokenGetter(): any{
     AsociarComponent,
     PaisComponent,
     ConfirmacionDialogComponent,
-    EditarUsuarioComponent
+    EditarUsuarioComponent,
+    ConductoresAsociadosComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +95,7 @@ export function tokenGetter(): any{
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true},
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

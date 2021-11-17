@@ -57,7 +57,7 @@ export class UsuarioComponent implements OnInit {
       disableClose: false
     });
 
-    this.dialogRef.componentInstance.confirmMessage = '¿Eliminar el usuario?';
+    this.dialogRef.componentInstance.confirmMessage = 'El usuario seleccionado va a ser eliminado';
 
     this.dialogRef.afterClosed().subscribe(result => {
       if (result) {

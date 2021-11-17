@@ -72,11 +72,11 @@
             <mat-label>Clave</mat-label>
             <input matInput type="password" formControlName="clave">
         </mat-form-field>
-        <div *ngIf="form.get('clave').errors && form.get('clave').touched">
+        <!-- <div *ngIf="form.get('clave').errors && form.get('clave').touched">
             <mat-error *ngIf="form.get('clave').hasError('required')">
                 Es un campo requerido
             </mat-error>
-        </div>
+        </div> -->
 
         <mat-form-field>
             <mat-label>Dirección</mat-label>
@@ -144,7 +144,7 @@
                 <td>
                     <mat-form-field>
                         <mat-label>Departamento</mat-label>
-                        <mat-select [ngModel]="userInfo.ciudad.departamento.nombre" [(value)]="deptSelected" formControlName="departamento" (selectionChange)="loadCities($event.value)">
+                        <mat-select [ngModel]="userInfo.ciudad.departamento.idDepartamento" [(value)]="deptSelected" formControlName="departamento" (selectionChange)="loadCities($event.value)">
                             <mat-option [value]="dept.idDepartamento" *ngFor="let dept of this.deptList">
                                 {{dept.idDepartamento}}. {{dept.nombre}}
                             </mat-option>
@@ -160,7 +160,7 @@
                 <td>
                     <mat-form-field>
                         <mat-label>Ciudad</mat-label>
-                        <mat-select [ngModel]="userInfo.ciudad.nombre" [(value)]="citySelected" formControlName="ciudad">
+                        <mat-select [ngModel]="userInfo.ciudad.idCiudad" formControlName="ciudad">
                             <mat-option [value]="city.idCiudad" *ngFor="let city of this.cityList">
                                 {{city.idCiudad}}. {{city.nombre}}
                             </mat-option>
