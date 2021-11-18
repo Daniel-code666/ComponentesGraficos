@@ -18,7 +18,7 @@ import { ConfirmacionDialogComponent } from '../confirmacion-dialog/confirmacion
 export class UsuarioComponent implements OnInit {
 
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['nombre', 'apellido', 'nick', 'documento', 'correo', 'rol', 'ciudad', 'ciudad2', 'acciones'];
+  displayedColumns: string[] = ['idUsuario', 'nombre', 'apellido', 'nick', 'documento', 'correo', 'rol', 'ciudad', 'ciudad2', 'acciones'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
 
   dataSource: UserInfo;

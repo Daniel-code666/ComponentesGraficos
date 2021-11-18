@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-asociar',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsociarComponent implements OnInit {
 
-  constructor() { }
+  public confirmMessage: string;
+
+  constructor(public dialogRef: MatDialogRef<AsociarComponent>) { }
 
   ngOnInit(): void {
   }

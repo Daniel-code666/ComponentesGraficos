@@ -44,6 +44,7 @@ import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-us
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ConductoresAsociadosComponent } from './pages/vehiculo/conductores-asociados/conductores-asociados.component';
 import { ConductoresNoAsociadosComponent } from './pages/vehiculo/conductores-no-asociados/conductores-no-asociados.component';
+import { DesasociarComponent } from './pages/vehiculo/desasociar/desasociar.component';
 
 export function tokenGetter(): any{
   const tk = sessionStorage.getItem(environment.TOKEN);
@@ -74,7 +75,8 @@ export function tokenGetter(): any{
     ConfirmacionDialogComponent,
     EditarUsuarioComponent,
     ConductoresAsociadosComponent,
-    ConductoresNoAsociadosComponent
+    ConductoresNoAsociadosComponent,
+    DesasociarComponent
   ],
   imports: [
     BrowserModule,

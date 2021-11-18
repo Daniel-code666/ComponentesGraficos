@@ -7,7 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { map, tap } from 'rxjs/operators';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AsociarComponent } from './asociar/asociar.component';
 // import { LoaderService } from 'src/app/_service/loader.service';
 
 @Component({
@@ -18,7 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class VehiculoComponent implements OnInit {
 
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'accion'];
+  displayedColumns: string[] = ['idVehiculo', 'placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'accion'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   dataSource: VehicleInfo = null;
   // dataSource = new MatTableDataSource([]);
@@ -34,6 +35,8 @@ export class VehiculoComponent implements OnInit {
 
   @ViewChild('vehiclePaginator') categoryPaginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  dialogRef: MatDialogRef<AsociarComponent>;
 
   constructor(private VehService: VehiculoService, public route: ActivatedRoute, public loader: LoaderService,
               public dialog: MatDialog) {
