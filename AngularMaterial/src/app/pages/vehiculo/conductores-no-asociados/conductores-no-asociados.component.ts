@@ -7,15 +7,15 @@ import { Usuario } from 'src/app/_model/usuario';
 import { UsuarioService } from 'src/app/_service/usuario.service';
 
 @Component({
-  selector: 'app-conductores-asociados',
-  templateUrl: './conductores-asociados.component.html',
-  styleUrls: ['./conductores-asociados.component.css']
+  selector: 'app-conductores-no-asociados',
+  templateUrl: './conductores-no-asociados.component.html',
+  styleUrls: ['./conductores-no-asociados.component.css']
 })
-export class ConductoresAsociadosComponent implements OnInit {
+export class ConductoresNoAsociadosComponent implements OnInit {
 
-  public condAsociados: Usuario[] = [];
+  public condNoAsociados: Usuario[] = [];
 
-  displayedColumns: string[] = ['nombre', 'apellido'];
+  displayedColumns: string[] = ['nombre', 'apellido', 'documento'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
 
   dataSource = new MatTableDataSource([]);
@@ -33,19 +33,19 @@ export class ConductoresAsociadosComponent implements OnInit {
   }
 
   private loadList(idVehiculo: number): void{
-    this.user.getUserAsociado(idVehiculo).subscribe(data => {
-      console.log(data);
+    this.user.getUserNoAsociado(idVehiculo).subscribe(data => {
       data.forEach(element => {
-        this.condAsociados.push(element);
+        this.condNoAsociados.push(element);
       });
-      this.dataSource.data = this.condAsociados;
+      this.dataSource.data = this.condNoAsociados;
       this.dataSource.paginator = this.paginator;
     });
     this.dataSource.data = [];
-    this.condAsociados = [];
+    this.condNoAsociados = [];
   }
 
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
+
 }

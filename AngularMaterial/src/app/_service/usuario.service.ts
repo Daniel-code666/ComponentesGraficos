@@ -81,5 +81,9 @@ export class UsuarioService {
   public getUserAsociado(idVehiculo: number): any{
     return this.http.get<Usuario[]>(`${this.url}/listarConductorVehiculo/${idVehiculo}`);
   }
+
+  public getUserNoAsociado(idVehiculo: number): any{
+    return this.http.get<Usuario[]>(`${this.url}/listarConductorNoVehiculo/${idVehiculo}`);
+  }
 }
 

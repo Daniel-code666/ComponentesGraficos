@@ -43,6 +43,7 @@ import { ConfirmacionDialogComponent } from './pages/confirmacion-dialog/confirm
 import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-usuario.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ConductoresAsociadosComponent } from './pages/vehiculo/conductores-asociados/conductores-asociados.component';
+import { ConductoresNoAsociadosComponent } from './pages/vehiculo/conductores-no-asociados/conductores-no-asociados.component';
 
 export function tokenGetter(): any{
   const tk = sessionStorage.getItem(environment.TOKEN);
@@ -72,7 +73,8 @@ export function tokenGetter(): any{
     PaisComponent,
     ConfirmacionDialogComponent,
     EditarUsuarioComponent,
-    ConductoresAsociadosComponent
+    ConductoresAsociadosComponent,
+    ConductoresNoAsociadosComponent
   ],
   imports: [
     BrowserModule,
