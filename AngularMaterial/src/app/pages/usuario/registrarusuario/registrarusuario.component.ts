@@ -64,7 +64,7 @@ export class RegistrarusuarioComponent implements OnInit {
     user.apellido = this.form.value.apellido;
     user.nick = this.form.value.nick;
     user.clave = this.form.value.clave;
-    user.direccion = this.form.value.clave;
+    user.direccion = this.form.value.direccion;
     user.celular = this.form.value.celular;
     user.celularAux = this.form.value.celularAux;
     user.correo = this.form.value.correo;
